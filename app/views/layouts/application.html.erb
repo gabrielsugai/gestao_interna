@@ -11,6 +11,9 @@
 
   <body>
     <%= render partial: 'shared/flashes' %>
+    <nav>
+      <%= link_to 'Planos', plans_path%>
+    </nav>
     <%= yield %>
   </body>
 </html>
