@@ -1,6 +1,5 @@
 class PlansController < ApplicationController
-  def index
-  end
+  def index; end
 
   def show
     @plan = Plan.find(params[:id])
@@ -24,6 +23,9 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit( :name, :price, :platforms, :limit_daily_chat, :limit_monthly_chat, :limit_daily_messages, :limit_monthly_messages, :extra_message_price, :extra_chat_price)
+    params.require(:plan).permit(:name, :price, :platforms,
+                                 :limit_daily_chat, :limit_monthly_chat,
+                                 :limit_daily_messages, :limit_monthly_messages,
+                                 :extra_message_price, :extra_chat_price)
   end
 end
