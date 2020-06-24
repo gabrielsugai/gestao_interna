@@ -55,7 +55,7 @@ feature 'User register plan' do
   scenario 'name must be unique' do
     user = create(:user, email: 'aaa@aaa.com', password: '12345678')
     login_as user, scope: :user
-    plano = create(:plan, name: 'Business')
+    create(:plan, name: 'Business')
 
     visit root_path
     click_on 'Planos'
