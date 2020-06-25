@@ -8,23 +8,23 @@
 
 
 <%= form_with model: @plan, local: true do |f| %>
-  <%= f.label :name, Plan.human_attribute_name(:name) %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= f.label :price, Plan.human_attribute_name(:price) %>
+  <%= f.label :price %>
   <%= f.number_field :price %>
-  <%= f.label :platforms, Plan.human_attribute_name(:platforms) %>
+  <%= f.label :platforms %>
   <%= f.text_field :platforms %>
-  <%= f.label :limit_daily_chat, Plan.human_attribute_name(:limit_daily_chat) %>
+  <%= f.label :limit_daily_chat %>
   <%= f.number_field :limit_daily_chat %>
-  <%= f.label :limit_monthly_chat, Plan.human_attribute_name(:limit_monthly_chat) %>
+  <%= f.label :limit_monthly_chat %>
   <%= f.number_field :limit_monthly_chat %>
-  <%= f.label :limit_daily_messages, Plan.human_attribute_name(:limit_daily_messages) %>
+  <%= f.label :limit_daily_messages %>
   <%= f.number_field :limit_daily_messages %>
-  <%= f.label :limit_monthly_messages, Plan.human_attribute_name(:limit_monthly_messages) %>
+  <%= f.label :limit_monthly_messages %>
   <%= f.number_field :limit_monthly_messages %>
-  <%= f.label :extra_message_price, Plan.human_attribute_name(:extra_message_price) %>
+  <%= f.label :extra_message_price %>
   <%= f.number_field :extra_message_price %>
-  <%= f.label :extra_chat_price, Plan.human_attribute_name(:extra_chat_price) %>
+  <%= f.label :extra_chat_price %>
   <%= f.number_field :extra_chat_price %>
   <%= f.submit 'Cadastrar'%>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_185229) do
+ActiveRecord::Schema.define(version: 2020_06_25_174856) do
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_185229) do
     t.integer "limit_monthly_messages"
     t.float "extra_message_price"
     t.float "extra_chat_price"
+    t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

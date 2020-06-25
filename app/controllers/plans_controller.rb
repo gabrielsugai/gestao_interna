@@ -12,10 +12,10 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     if @plan.save
-      flash[:notice] = 'Successfully!'
+      flash[:notice] = 'Plano criado com sucesso!'
       redirect_to @plan
     else
-      flash[:notice]
+      flash[:notice] = 'Não foi possível criar o plano!'
       render :new
     end
   end
