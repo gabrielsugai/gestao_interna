@@ -14,4 +14,15 @@ describe 'Recive companies' do
     expect(json_response[:corporate_name]).to eq('CampusCode')
     expect(json_response[:token].length).to eq(6)
   end
+
+  it 'CNPJ must be uniq' do
+    company = create(:company, cnpj: '22.927.293/0001-90')
+    company_params = { name: 'TreinaDev', cnpj: '22.927.293/0001-90', address: 'Paulista, 450', corporate_name: 'CampusCode' }
+
+    post api_v1_companies_path, params: company_params
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to have_http_status(:not_acceptable)
+    expect(json_response[:error]).to include 'Cnpj já está em uso'
+  end
 end
