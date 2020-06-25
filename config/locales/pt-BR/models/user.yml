@@ -26,4 +26,7 @@ pt-BR:
     registrations:
       new:
         sign_up: Registrar-se
+    shared:
+      links:
+        sign_up: Registrar Usuário
 

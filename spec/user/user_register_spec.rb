@@ -53,4 +53,30 @@ feature 'User register account' do
     expect(User.count).to eq 0
     expect(page).to have_content('Senha é muito curto (mínimo: 6 caracteres)')
   end
+
+  scenario 'email cannot be blank' do
+    visit new_user_registration_path
+
+    fill_in 'Email', with: ''
+    fill_in 'Senha', with: '12345678'
+    fill_in 'Confirmação de senha', with: '123'
+
+    click_on 'Registrar-se'
+
+    expect(User.count).to eq 0
+    expect(page).to have_content('Email não pode ficar em branco')
+  end
+
+  scenario 'senha cannot be blank' do
+    visit new_user_registration_path
+
+    fill_in 'Email', with: 'user@test.com'
+    fill_in 'Senha', with: ''
+    fill_in 'Confirmação de senha', with: '123'
+
+    click_on 'Registrar-se'
+
+    expect(User.count).to eq 0
+    expect(page).to have_content('Senha não pode ficar em branco')
+  end
 end
