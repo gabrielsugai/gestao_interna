@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Recive companies' do
   it 'successfully' do
-    company_params = { name: 'TreinaDev', cnpj: '68.216.127/0001-86', address: 'Paulista, 450', corporate_name: 'CampusCode' }
+    company_params = { name: 'TreinaDev', cnpj: '68.216.127/0001-86', address: 'Paulista, 450',
+                       corporate_name: 'CampusCode' }
 
     post api_v1_companies_path, params: company_params
 
@@ -16,8 +17,9 @@ describe 'Recive companies' do
   end
 
   it 'CNPJ must be uniq' do
-    company = create(:company, cnpj: '22.927.293/0001-90')
-    company_params = { name: 'TreinaDev', cnpj: '22.927.293/0001-90', address: 'Paulista, 450', corporate_name: 'CampusCode' }
+    create(:company, cnpj: '22.927.293/0001-90')
+    company_params = { name: 'TreinaDev', cnpj: '22.927.293/0001-90', address: 'Paulista, 450',
+                       corporate_name: 'CampusCode' }
 
     post api_v1_companies_path, params: company_params
 
@@ -25,4 +27,13 @@ describe 'Recive companies' do
     expect(response).to have_http_status(:not_acceptable)
     expect(json_response[:error]).to include 'Cnpj já está em uso'
   end
+
+  it 'blank datas' do
+    
+  end
+
+  it 'cnpj must be valid' do
+    
+  end
+  #TODO LIST: Criar metodo que cria o token / testes unitarios
 end
