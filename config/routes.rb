@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'home#index'
+  resources :plans, only: %i[index show new create]
 
   namespace :api do
     namespace :v1 do
