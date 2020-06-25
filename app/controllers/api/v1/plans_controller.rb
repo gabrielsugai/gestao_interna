@@ -4,13 +4,13 @@ module Api
       def index
         @plans = Plan.all
 
-        render json: @plans
+        render json: @plans.to_json(include: [:plan_prices])
       end
 
       def show
         @plan = Plan.find(params[:id])
 
-        render json: @plan
+        render json: @plan.to_json(include: [:plan_prices])
       rescue ActiveRecord::RecordNotFound => e
         render status: :not_found,
                json: {

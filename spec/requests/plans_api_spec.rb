@@ -10,16 +10,10 @@ describe 'Plan management' do
       json_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(:ok)
-      expect(json_response[0][:name]).to eq(plans.first.name)
-      expect(json_response[0][:price]).to eq(plans.first.price)
-
-      expect(json_response[1][:name]).to eq(plans.second.name)
-      expect(json_response[1][:price]).to eq(plans.second.price)
-
-      expect(json_response[2][:name]).to eq(plans.third.name)
-      expect(json_response[2][:price]).to eq(plans.third.price)
-
-      expect(response.body).to include(plans.last.price.to_s)
+      (0..4).each do |index|
+        expect(json_response[index][:name]).to eq(plans[index].name)
+        expect(json_response[index][:plan_prices].last[:value]).to eq(plans[index].current_price)
+      end
     end
 
     it 'returns empty array without plans' do
@@ -42,9 +36,9 @@ describe 'Plan management' do
       json_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(json_response[:name]).to eq(plan.name)
-      expect(json_response[:price]).to eq(plan.price)
+      expect(json_response[:plan_prices].last[:value]).to eq(plan.current_price)
 
-      expect(response.body).to include(plan.price.to_s)
+      expect(response.body).to include(plan.current_price.to_s)
     end
 
     it 'returns not found' do

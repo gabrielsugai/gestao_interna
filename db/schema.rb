@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_175651) do
+ActiveRecord::Schema.define(version: 2020_06_25_184814) do
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -21,8 +21,15 @@ ActiveRecord::Schema.define(version: 2020_06_23_175651) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "plan_prices", force: :cascade do |t|
+    t.integer "plan_id", null: false
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_plan_prices_on_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
-    t.float "price"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,4 +47,5 @@ ActiveRecord::Schema.define(version: 2020_06_23_175651) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "plan_prices", "plans"
 end
