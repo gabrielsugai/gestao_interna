@@ -1,0 +1,12 @@
+class Api::V1::CompaniesController < ActionController::API
+  def create
+    @company = Company.new(params.permit(:name, :cnpj, :address, :corporate_name))
+    @company.token = 'ABC123'
+    
+    if @company.save
+      render json: @company, status: :created
+    else
+      render status: :not_acceptable
+    end
+  end
+end

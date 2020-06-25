@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Company, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Company do
+  context 'Receving datas' do
+    it 'successfully' do
+    end
+  end
 end
