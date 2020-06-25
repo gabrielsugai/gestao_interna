@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      plan:
+        one: Plano
+        other: Planos
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+
+      plan:
+        <<: *attr_defaults
