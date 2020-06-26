@@ -50,5 +50,4 @@ describe 'Recive companies' do
     expect(response).to have_http_status(:not_acceptable)
     expect(json_response[:error]).to include 'CNPJ não é válido'
   end
-  #TODO LIST: Criar metodo que cria o token / testes unitarios / colocar index de unico no token
 end

@@ -3,7 +3,6 @@ module Api
     class CompaniesController < ActionController::API
       def create
         @company = Company.new(params.permit(:name, :cnpj, :address, :corporate_name))
-        @company.token = 'ABC123'
 
         if @company.save
           render json: @company, status: :created
