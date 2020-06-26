@@ -4,6 +4,7 @@ FactoryBot.define do
     name { Faker::Company.name }
     cnpj { 'MyString' }
     address { Faker::Address.full_address }
+    corporate_name { Faker::Company.name }
     blocked { false }
   end
 end

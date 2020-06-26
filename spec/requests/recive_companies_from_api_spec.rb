@@ -25,15 +25,30 @@ describe 'Recive companies' do
 
     json_response = JSON.parse(response.body, symbolize_names: true)
     expect(response).to have_http_status(:not_acceptable)
-    expect(json_response[:error]).to include 'Cnpj já está em uso'
+    expect(json_response[:error]).to include 'CNPJ já está em uso'
   end
 
   it 'blank datas' do
-    
+    company_params = {}
+
+    post api_v1_companies_path, params: company_params
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to have_http_status(:not_acceptable)
+    expect(json_response[:error]).to include 'CNPJ não pode ficar em branco'
+    expect(json_response[:error]).to include 'Nome não pode ficar em branco'
+    expect(json_response[:error]).to include 'Razão social não pode ficar em branco'
+    expect(json_response[:error]).to include 'Endereço não pode ficar em branco'
   end
 
   it 'cnpj must be valid' do
-    
+    company_params = { name: 'TreinaDev', cnpj: '00.000.000/0000-90', address: 'Paulista, 450',
+                       corporate_name: 'CampusCode' }
+
+    post api_v1_companies_path, params: company_params
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to have_http_status(:not_acceptable)
+    expect(json_response[:error]).to include 'CNPJ não é válido'
   end
-  #TODO LIST: Criar metodo que cria o token / testes unitarios
+  #TODO LIST: Criar metodo que cria o token / testes unitarios / colocar index de unico no token
 end

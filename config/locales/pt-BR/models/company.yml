@@ -13,3 +13,10 @@ pt-BR:
         created_at: Criado
         updated_at: Alterado
         deleted_at: Excluído
+        name: Nome
+        address: Endereço
+        corporate_name: Razão social
+        cnpj: CNPJ
+        token: token
+      company:
+        <<: *attr_defaults
