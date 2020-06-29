@@ -3,6 +3,12 @@ class Plan < ApplicationRecord
 
   has_many :plan_prices, dependent: :destroy
 
+  validates :name, :price, :platforms, :limit_daily_chat, :limit_monthly_chat,
+            :limit_daily_messages, :limit_monthly_messages,
+            :extra_message_price, :extra_chat_price, presence: true
+
+  validates :name, uniqueness: true
+
   after_save :create_plan_price
 
   def current_price
