@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 2020_06_29_181535) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "platforms"
+    t.integer "limit_daily_chat"
+    t.integer "limit_monthly_chat"
+    t.integer "limit_daily_messages"
+    t.integer "limit_monthly_messages"
+    t.float "extra_message_price"
+    t.float "extra_chat_price"
+    t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
