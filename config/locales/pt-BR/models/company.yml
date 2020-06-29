@@ -4,7 +4,6 @@ pt-BR:
     models:
       company:
         one: Empresa
-        other: Empresas
         cnpj.exist: CNPJ já existente!
 
     attributes:

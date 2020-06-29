@@ -21,7 +21,7 @@ describe Company do
     end
 
     context '#cnpj' do
-      it 'canot be blank' do
+      it 'cannot be blank' do
         company = build(:company, cnpj: '')
 
         company.save
@@ -50,7 +50,7 @@ describe Company do
     end
 
     context 'blank attributes' do
-      it 'name canot be blank' do
+      it 'name cannot be blank' do
         company = build(:company, name: '')
 
         company.save
@@ -58,7 +58,7 @@ describe Company do
         expect(company.errors[:name]).to include('não pode ficar em branco')
       end
 
-      it 'address canot be blank' do
+      it 'address cannot be blank' do
         company = build(:company, address: '')
 
         company.save
@@ -66,7 +66,7 @@ describe Company do
         expect(company.errors[:address]).to include('não pode ficar em branco')
       end
 
-      it 'corporate name canot be blank' do
+      it 'corporate name cannot be blank' do
         company = build(:company, corporate_name: '')
 
         company.save
