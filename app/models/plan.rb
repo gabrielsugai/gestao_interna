@@ -12,12 +12,12 @@ class Plan < ApplicationRecord
   after_save :create_plan_price
 
   def current_price
-    plan_prices.last.value
+    plan_prices.last&.value
   end
 
   private
 
   def create_plan_price
-    PlanPrice.create(value: price, plan: self)
+    PlanPrice.create(value: price, plan: self) unless current_price == price.to_i
   end
 end

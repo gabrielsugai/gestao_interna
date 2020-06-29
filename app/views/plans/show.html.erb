@@ -18,3 +18,5 @@
   <dt><%= Plan.human_attribute_name(:extra_chat_price) %><dt>
   <dd><%= number_to_currency @plan.extra_chat_price %><dd>
 </dl>
+
+<%= link_to t('views.navigation.edit'), edit_plan_path(@plan) %>
