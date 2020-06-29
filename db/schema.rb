@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_211419) do
+ActiveRecord::Schema.define(version: 2020_06_29_181535) do
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_211419) do
     t.string "address"
     t.string "corporate_name"
     t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
+    t.index ["token"], name: "index_companies_on_token", unique: true
   end
 
   create_table "plans", force: :cascade do |t|

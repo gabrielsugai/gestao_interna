@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
   validates :name, :address, :corporate_name, :cnpj, presence: true
-  validates :cnpj, uniqueness: true
-  validates :cnpj, format: { with: /\A^\d{2,3}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$\z/ }
+  validates :cnpj, :token, uniqueness: true
+  validates :cnpj, format: { with: %r{\A^\d{2,3}\.\d{3}\.\d{3}/\d{4}-\d{2}$\z} }
   validate :cnpj_must_be_valid
 
   before_create :generate_token
