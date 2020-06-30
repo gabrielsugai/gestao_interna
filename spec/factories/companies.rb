@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :company do
-    token { 'MyString' }
-    name { 'MyString' }
-    cnpj { 'MyString' }
+    name { Faker::Company.name }
+    cnpj { Faker::Company.brazilian_company_number(formatted: true) }
+    address { Faker::Address.full_address }
+    corporate_name { Faker::Company.name }
     blocked { false }
   end
 end
