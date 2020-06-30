@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_181535) do
+ActiveRecord::Schema.define(version: 2020_06_30_202704) do
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -23,6 +23,27 @@ ActiveRecord::Schema.define(version: 2020_06_29_181535) do
     t.string "corporate_name"
     t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
     t.index ["token"], name: "index_companies_on_token", unique: true
+  end
+
+  create_table "order_cancellation_requests", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "status", default: 0
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_cancellation_requests_on_order_id"
+    t.index ["user_id"], name: "index_order_cancellation_requests_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "plan_id", null: false
+    t.float "price"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_orders_on_company_id"
+    t.index ["plan_id"], name: "index_orders_on_plan_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -52,4 +73,8 @@ ActiveRecord::Schema.define(version: 2020_06_29_181535) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_cancellation_requests", "orders"
+  add_foreign_key "order_cancellation_requests", "users"
+  add_foreign_key "orders", "companies"
+  add_foreign_key "orders", "plans"
 end
