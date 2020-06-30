@@ -6,9 +6,9 @@ module Api
         cancellation_request = OrderCancellationRequest.new(order: order)
 
         if cancellation_request.save
-          render json: cancellation_request, status: :ok
+          render json: {}, status: :ok
         else
-          render status: :bad_request
+          render json: {}, status: :bad_request
         end
       rescue ActiveRecord::RecordNotFound => e
         order_not_found(e)

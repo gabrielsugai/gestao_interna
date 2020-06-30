@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_202704) do
   create_table "order_cancellation_requests", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "status", default: 0
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_order_cancellation_requests_on_order_id"
