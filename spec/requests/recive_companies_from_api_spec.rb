@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Recive companies' do
+describe 'Receive companies' do
   it 'successfully' do
     post api_v1_companies_path, params: { company: { name: 'TreinaDev', cnpj: '68.216.127/0001-86',
                                                      address: 'Paulista, 450', corporate_name: 'CampusCode' } }

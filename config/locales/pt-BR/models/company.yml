@@ -4,7 +4,6 @@ pt-BR:
     models:
       company:
         one: Empresa
-        cnpj.exist: CNPJ já existente!
 
     attributes:
       attr_defaults: &attr_defaults
