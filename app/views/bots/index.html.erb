@@ -1,0 +1,6 @@
+<% @bots.each do |bot|%>
+  <%= bot.company.name %>
+  <%= bot.order.plan.name %>
+  <%= bot.status %>
+  <%= bot.token %>
+<% end %>

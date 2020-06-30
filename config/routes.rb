@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :plans, only: %i[index show new create]
+  resources :bots, only: %i[index]
 
   namespace :api do
     namespace :v1 do
