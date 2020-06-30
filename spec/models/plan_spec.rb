@@ -24,7 +24,9 @@ RSpec.describe Plan, type: :model do
   end
 
   it 'method: current_price' do
-    prices = create_list(:plan_price, 3, plan: subject)
-    expect(subject.current_price).to eq(prices.last.value)
+    create(:plan_price, value: 100.00, plan: subject)
+    second_price = create(:plan_price, value: 200.00, plan: subject)
+
+    expect(subject.current_price).to eq(second_price.value)
   end
 end

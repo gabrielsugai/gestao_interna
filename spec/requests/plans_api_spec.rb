@@ -12,7 +12,14 @@ describe 'Plan management' do
       expect(response).to have_http_status(:ok)
       (0..4).each do |index|
         expect(json_response[index][:name]).to eq(plans[index].name)
-        expect(json_response[index][:plan_prices].last[:value]).to eq(plans[index].current_price)
+        expect(json_response[index][:platforms]).to eq(plans[index].platforms)
+        expect(json_response[index][:limit_daily_chat]).to eq(plans[index].limit_daily_chat)
+        expect(json_response[index][:limit_monthly_chat]).to eq(plans[index].limit_monthly_chat)
+        expect(json_response[index][:limit_daily_messages]).to eq(plans[index].limit_daily_messages)
+        expect(json_response[index][:limit_monthly_messages]).to eq(plans[index].limit_monthly_messages)
+        expect(json_response[index][:extra_message_price]).to eq(plans[index].extra_message_price)
+        expect(json_response[index][:extra_chat_price]).to eq(plans[index].extra_chat_price)
+        expect(json_response[index][:current_price]).to eq(plans[index].current_price)
       end
     end
 
@@ -36,7 +43,14 @@ describe 'Plan management' do
       json_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(json_response[:name]).to eq(plan.name)
-      expect(json_response[:plan_prices].last[:value]).to eq(plan.current_price)
+      expect(json_response[:platforms]).to eq(plan.platforms)
+      expect(json_response[:limit_daily_chat]).to eq(plan.limit_daily_chat)
+      expect(json_response[:limit_monthly_chat]).to eq(plan.limit_monthly_chat)
+      expect(json_response[:limit_daily_messages]).to eq(plan.limit_daily_messages)
+      expect(json_response[:limit_monthly_messages]).to eq(plan.limit_monthly_messages)
+      expect(json_response[:extra_message_price]).to eq(plan.extra_message_price)
+      expect(json_response[:extra_chat_price]).to eq(plan.extra_chat_price)
+      expect(json_response[:current_price]).to eq(plan.current_price)
 
       expect(response.body).to include(plan.current_price.to_s)
     end

@@ -9,7 +9,7 @@ class Plan < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  after_save :create_plan_price
+  after_save_commit :create_plan_price
 
   def current_price
     plan_prices.last&.value
@@ -18,6 +18,6 @@ class Plan < ApplicationRecord
   private
 
   def create_plan_price
-    PlanPrice.create(value: price, plan: self) unless current_price == price.to_i
+    PlanPrice.create(value: price, plan: self) unless current_price == price.to_f
   end
 end
