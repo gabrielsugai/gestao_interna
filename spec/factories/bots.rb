@@ -3,6 +3,6 @@ FactoryBot.define do
     company { nil }
     order { nil }
     status { 1 }
-    token { "MyString" }
+    token { 'MyString' }
   end
 end

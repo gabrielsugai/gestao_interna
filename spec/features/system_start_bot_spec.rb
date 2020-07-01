@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'system start bot' do
   scenario 'succesfully' do
     user = create(:user)
-    login_as user 
+    login_as user
     company = create(:company)
     plan = create(:plan)
     order = Order.create(company: company, plan: plan)
