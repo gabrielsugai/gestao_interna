@@ -1,5 +1,7 @@
 class PlansController < ApplicationController
-  def index; end
+  def index
+    @plans = Plan.all
+  end
 
   def show
     @plan = Plan.find(params[:id])
@@ -17,6 +19,19 @@ class PlansController < ApplicationController
     else
       flash[:notice] = 'Não foi possível criar o plano!'
       render :new
+    end
+  end
+
+  def edit
+    @plan = Plan.find(params[:id])
+  end
+
+  def update
+    @plan = Plan.find(params[:id])
+    if @plan.update(plan_params)
+      redirect_to @plan, success: t('flash.updated')
+    else
+      render :edit
     end
   end
 
