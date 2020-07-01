@@ -2,7 +2,7 @@
   <dt><%= Plan.human_attribute_name(:name) %><dt>
   <dd><%= @plan.name %><dd>
   <dt><%= Plan.human_attribute_name(:price) %><dt>
-  <dd><%= number_to_currency @plan.price %><dd>
+  <dd><%= number_to_currency @plan.current_price %><dd>
   <dt><%= Plan.human_attribute_name(:platforms) %><dt>
   <dd><%= @plan.platforms %><dd>
   <dt><%= Plan.human_attribute_name(:limit_daily_chat) %><dt>
@@ -18,3 +18,5 @@
   <dt><%= Plan.human_attribute_name(:extra_chat_price) %><dt>
   <dd><%= number_to_currency @plan.extra_chat_price %><dd>
 </dl>
+
+<%= link_to t('views.navigation.edit'), edit_plan_path(@plan) %>
