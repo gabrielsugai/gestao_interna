@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :bot do
-    company { nil }
-    order { nil }
-    status { 1 }
+    company
+    order
+    status { 0 }
     token { 'MyString' }
   end
 end

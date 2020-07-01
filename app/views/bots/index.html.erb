@@ -1,6 +1,11 @@
-<% @bots.each do |bot|%>
-  <%= bot.company.name %>
-  <%= bot.order.plan.name %>
-  <%= bot.status %>
-  <%= bot.token %>
+<h2>Bots</h2>
+<div>
+  <% @bots.each do |bot|%>
+  <ul>
+    <%= bot.company.name %>
+    <%= bot.order.plan.name %>
+    <%= Bot.human_attribute_name("status.#{bot.status}") %>
+    <%= bot.token %>
+  </ul>
 <% end %>
+</div>

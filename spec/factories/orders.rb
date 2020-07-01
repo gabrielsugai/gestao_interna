@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :order do
-    company { nil }
-    plan { nil }
-    price { nil }
+    company
+    plan
   end
 end
