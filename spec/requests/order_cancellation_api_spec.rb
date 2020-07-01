@@ -8,7 +8,7 @@ describe 'Order cancellation' do
       post cancel_api_v1_order_path(order)
 
       expect(response).to have_http_status(:ok)
-      expect(order.order_cancellation_requests.count).to eq(1)
+      expect(order.cancellation_requests.count).to eq(1)
     end
 
     it 'should return not found for an invalid order id' do
@@ -28,7 +28,7 @@ describe 'Order cancellation' do
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:bad_request)
-      expect(order.order_cancellation_requests.count).to eq(1)
+      expect(order.cancellation_requests.count).to eq(1)
       expect(json_response[:error]).to eq 'Esse pedido já possui uma solicitação de cancelamento em aberto.'
     end
   end

@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      order_cancellation_request:
+        one: Solicitação de cancelamento
+        other: Solicitações de cancelamento
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+
+      order_cancellation_request:
+        <<: *attr_defaults

@@ -1,0 +1,32 @@
+<h1>Solicitações de cancelamento</h1>
+
+  <section>
+
+      <table class="col">
+        <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.order_cancellation_request.id') %></th>
+            <th><%= t('activerecord.attributes.company.name') %></th>
+            <th><%= t('activerecord.attributes.company.token') %></th>
+            <th><%= t('activerecord.attributes.plan.name') %></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @cancellation_requests.each do |request| %>
+            <tr id="request-<%= request.id %>">
+              <td><%= request.id %></td>
+              <td><%= request.order.company.name %></td>
+              <td><%= request.order.company.token %></td>
+              <td><%= request.order.plan.name %></td>
+
+              <td>
+                <%= link_to t('.approve'), order_cancellation_request_approve_path(request), method: :post %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+  </section>

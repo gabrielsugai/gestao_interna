@@ -11,12 +11,15 @@
 
   <body>
     <% if user_signed_in? %>
-      <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+      <nav>
+        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Planos', plans_path%>
+        <%= link_to  "Solicitações de cancelamento", order_cancellation_requests_path %>
+      </nav>
     <% end %>
+
     <%= render partial: 'shared/flashes' %>
-    <nav>
-      <%= link_to 'Planos', plans_path%>
-    </nav>
+
     <%= yield %>
   </body>
 </html>

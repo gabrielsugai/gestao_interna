@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :bots, only: %i[create]
   resources :plans, only: %i[index show new create edit update]
+  resources :order_cancellation_requests, only: %i[index] do
+    post :approve
+    post :reject
+  end
 
   namespace :api do
     namespace :v1 do

@@ -9,7 +9,7 @@ class OrderCancellationRequest < ApplicationRecord
   private
 
   def check_for_open_requests
-    open_requests = order.order_cancellation_requests.where(status: 'open')
+    open_requests = order.cancellation_requests.where(status: 'open')
     return if open_requests.empty?
 
     errors.add(:order, :has_an_open_cancellation_request)
