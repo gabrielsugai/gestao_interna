@@ -19,10 +19,9 @@ feature 'system start bot' do
 
   scenario 'show all bots' do
     log_user_in!
-    bot_1 = create(:bot, status: 5)
-    bot_2 = create(:bot, status: 10)
-    bot_3 = create(:bot)
-    
+    create(:bot, status: 5)
+    create(:bot, status: 10)
+    create(:bot)
     visit bots_path
 
     expect(page).to have_content('Cancelado')
@@ -30,7 +29,7 @@ feature 'system start bot' do
     expect(page).to have_content('Ativo')
   end
 
-  xscenario 'there isn\'t bots created' do
+  scenario 'there isn\'t bots created' do
     log_user_in!
 
     visit bots_path

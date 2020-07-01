@@ -1,4 +1,7 @@
 <h2>Bots</h2>
+<% if @bots.empty?%>
+  <p>Ainda não foi criado nenhum bot!</p>
+<% end %>
 <div>
   <% @bots.each do |bot|%>
   <ul>
