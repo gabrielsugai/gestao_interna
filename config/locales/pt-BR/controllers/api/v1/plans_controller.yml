@@ -5,3 +5,5 @@ pt-BR:
       v1:
         errors:
           not_found: '%{model} não encontrado.'
+          open_cancellation_request: Esse pedido já possui uma solicitação de cancelamento em aberto.
+

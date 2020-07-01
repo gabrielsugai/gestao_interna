@@ -1,3 +1,29 @@
-<h1>Lista de Planos </h1>
+<h1>Lista de Planos</h1>
+
+  <section>
+
+      <table class="col">
+        <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.plan.name') %></th>
+            <th><%= t('activerecord.attributes.plan.current_price') %></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @plans.each do |plan| %>
+            <tr id="plan-<%= plan.id %>">
+              <td><%= plan.name %></td>
+              <td><%= number_to_currency(plan.current_price) %></td>
+
+              <td><%= link_to t('views.navigation.details'), plan_path(plan), id: "details-#{plan.id}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+  </section>
+
 
 <%= link_to 'Cadastrar novo plano', new_plan_path %>

@@ -3,6 +3,6 @@ FactoryBot.define do
     company
     plan
     price { 1.5 }
-    email { "MyString" }
+    email { 'MyString' }
   end
 end

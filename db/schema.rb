@@ -46,8 +46,15 @@ ActiveRecord::Schema.define(version: 2020_06_30_202704) do
     t.index ["plan_id"], name: "index_orders_on_plan_id"
   end
 
+  create_table "plan_prices", force: :cascade do |t|
+    t.integer "plan_id", null: false
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_plan_prices_on_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
-    t.float "price"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,4 +84,5 @@ ActiveRecord::Schema.define(version: 2020_06_30_202704) do
   add_foreign_key "order_cancellation_requests", "users"
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "plans"
+  add_foreign_key "plan_prices", "plans"
 end
