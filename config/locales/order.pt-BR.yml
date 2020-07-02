@@ -10,3 +10,6 @@ pt-BR:
         plan: Plano
         company: Empresa
         price: Preço
+  order:
+    check_company:
+      token: 'Token não encontrado'

@@ -1,33 +1,31 @@
-module Api
-  module V1
-    class OrdersController < ActionController::API
-      before_action :check_company, :check_plan
+class Api::V1::OrdersController < ApiController
 
-      def create
-        @order = Order.create(company: @company, plan: @plan, price: @price)
-        render json: @order, include: %i[company plan], status: :ok
-      end
+  before_action :check_company, :check_plan
 
-      private
+  def create
+    @order = Order.create(company: @company, plan: @plan, price: @price)
+    render json: @order, include: %i[company plan], status: :ok
+  end
 
-      def check_company
-        @company = Company.find_by!(token: params[:order][:company_token])
-      rescue ActiveRecord::RecordNotFound
-        render status: :ok,
-               json: {
-                 error: I18n.t('controllers.api.v1.errors.token')
-               }
-      end
+  private
 
-      def check_plan
-        @plan = Plan.find(params[:order][:plan_id])
-        @price = params[:order][:price].nil? ? @plan.price : params[:order][:price]
-      rescue ActiveRecord::RecordNotFound
-        render status: :ok,
-               json: {
-                 error: I18n.t('controllers.api.v1.errors.plan')
-               }
-      end
-    end
+  def check_company
+    @company = Company.find_by!(token: params[:order][:company_token])
+  rescue ActiveRecord::RecordNotFound
+    render status: :ok,
+            json: {
+              errors: t('controllers.api.v1.errors.not_found.token')
+            }
+  end
+
+  def check_plan
+    @plan = Plan.find(params[:order][:plan_id])
+    @price = params[:order][:price].nil? ? @plan.price : params[:order][:price]
+    # @price = params[:order][:price] || @plan.price
+  rescue ActiveRecord::RecordNotFound
+    render status: :ok,
+            json: {
+            errors: t('controllers.api.v1.errors.not_found.plan')
+            }
   end
 end
