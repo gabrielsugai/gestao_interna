@@ -3,6 +3,6 @@ FactoryBot.define do
     company
     order
     status { 0 }
-    token { 'MyString' }
+    token { 'MMM000' }
   end
 end

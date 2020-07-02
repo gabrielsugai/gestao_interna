@@ -14,7 +14,7 @@ feature 'system start bot' do
     expect(page).to have_content(newbot.company.name)
     expect(page).to have_content(newbot.order.plan.name)
     expect(page).to have_content('Ativo')
-    expect(page).to have_content(newbot.token)
+    expect(newbot.token).to_not be_blank
   end
 
   scenario 'show all bots' do
