@@ -14,7 +14,7 @@ module Api
       rescue ActiveRecord::RecordNotFound => e
         render status: :not_found,
                json: {
-                 error: I18n.t('controllers.api.v1.errors.not_found',
+                 error: I18n.t('api.v1.errors.not_found',
                                model: e.model.constantize.model_name.human)
                }
       end

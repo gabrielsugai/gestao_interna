@@ -2,6 +2,6 @@
 pt-BR:
   flash:
     updated: Atualizado com sucesso!
-    order_cancellation_request:
+    purchase_cancellation:
       approved: Solicitação de cancelamento aprovada! 
       rejected: Solicitação de cancelamento rejeitada!

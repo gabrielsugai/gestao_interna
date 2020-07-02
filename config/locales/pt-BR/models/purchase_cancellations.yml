@@ -2,7 +2,7 @@
 pt-BR:
   activerecord:
     models:
-      order_cancellation_request:
+      purchase_cancellation:
         one: Solicitação de cancelamento
         other: Solicitações de cancelamento
 
@@ -13,5 +13,6 @@ pt-BR:
         updated_at: Alterado
         deleted_at: Excluído
 
-      order_cancellation_request:
+      purchase_cancellation:
         <<: *attr_defaults
+        reason: Motivo

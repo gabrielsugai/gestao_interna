@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :order_cancellation_request do
-    order
+  factory :purchase_cancellation do
+    purchase
     status { 0 }
     user { nil }
   end

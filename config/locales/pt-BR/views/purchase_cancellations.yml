@@ -1,6 +1,6 @@
 ---
 pt-BR:
-  order_cancellation_requests:
+  purchase_cancellations:
     index:
       approve: Aprovar
       reject: Rejeitar

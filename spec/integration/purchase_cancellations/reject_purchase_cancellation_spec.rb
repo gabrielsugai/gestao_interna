@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'User can browse cancellation request' do
+feature 'User can browse purchase cancellation request' do
   scenario 'and approve one successfuly' do
     user = log_user_in!
-    cancellation_requests = create_list(:order_cancellation_request, 3)
+    cancellation_requests = create_list(:purchase_cancellation, 3)
     cancellation_request = cancellation_requests.first
 
     visit root_path
@@ -16,12 +16,12 @@ feature 'User can browse cancellation request' do
     cancellation_request.reload
     expect(cancellation_request.status).to eq('rejected')
     expect(cancellation_request.user).to eq(user)
-    expect(cancellation_request.order.status).to eq('active')
+    expect(cancellation_request.purchase.status).to eq('active')
 
-    expect(current_path).to eq(order_cancellation_requests_path)
+    expect(current_path).to eq(purchase_cancellations_path)
     expect(page).to have_content('Solicitação de cancelamento rejeitada!')
-    expect(page).not_to have_content(cancellation_request.order.company.name)
-    expect(page).not_to have_content(cancellation_request.order.company.token)
-    expect(page).not_to have_content(cancellation_request.order.plan.name)
+    expect(page).not_to have_content(cancellation_request.purchase.company.name)
+    expect(page).not_to have_content(cancellation_request.purchase.company.token)
+    expect(page).not_to have_content(cancellation_request.purchase.plan.name)
   end
 end

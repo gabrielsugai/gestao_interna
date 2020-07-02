@@ -1,5 +1,5 @@
-class OrderCancellationRequest < ApplicationRecord
-  belongs_to :order
+class PurchaseCancellation < ApplicationRecord
+  belongs_to :purchase
   belongs_to :user, optional: true
 
   enum status: { open: 0, approved: 1, rejected: 2 }
@@ -9,7 +9,7 @@ class OrderCancellationRequest < ApplicationRecord
   def approve!(user)
     approved!
     self.user = user
-    order.inactive!
+    purchase.inactive!
   end
 
   def reject!(user)
@@ -20,9 +20,9 @@ class OrderCancellationRequest < ApplicationRecord
   private
 
   def check_for_open_requests
-    open_requests = order.cancellation_requests.where(status: 'open')
+    open_requests = purchase.cancellation_requests.where(status: 'open')
     return if open_requests.empty?
 
-    errors.add(:order, :has_an_open_cancellation_request)
+    errors.add(:purchase, :has_an_open_cancellation_request)
   end
 end

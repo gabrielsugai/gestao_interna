@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe OrderCancellationRequest, type: :model do
-  let!(:subject) { create :order_cancellation_request }
+RSpec.describe PurchaseCancellation, type: :model do
+  let!(:subject) { create :purchase_cancellation }
 
   it 'has relations' do
     expect(subject).to respond_to(:user)
-    expect(subject).to respond_to(:order)
+    expect(subject).to respond_to(:purchase)
   end
 
   it 'is valid with valid attributes' do
@@ -21,11 +21,11 @@ RSpec.describe OrderCancellationRequest, type: :model do
       expect(subject.user).to eq(user)
     end
 
-    it 'deactivates an order' do
+    it 'deactivates an purchase' do
       user = create :user
       subject.approve!(user)
 
-      expect(subject.order.status).to eq('inactive')
+      expect(subject.purchase.status).to eq('inactive')
     end
   end
 
@@ -38,11 +38,11 @@ RSpec.describe OrderCancellationRequest, type: :model do
       expect(subject.user).to eq(user)
     end
 
-    it 'does not deactivate an order' do
+    it 'does not deactivate an purchase' do
       user = create :user
       subject.reject!(user)
 
-      expect(subject.order.status).to eq('active')
+      expect(subject.purchase.status).to eq('active')
     end
   end
 end

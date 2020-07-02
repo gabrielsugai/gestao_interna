@@ -2,9 +2,9 @@
 pt-BR:
   activerecord:
     models:
-      order:
-        one: Pedido
-        other: Pedidos
+      purchase:
+        one: Compra
+        other: Compras
 
     attributes:
       attr_defaults: &attr_defaults
@@ -13,6 +13,6 @@ pt-BR:
         updated_at: Alterado
         deleted_at: Excluído
 
-    order:
-      <<: *attr_defaults
-      token: Token
+      purchase:
+        <<: *attr_defaults
+        token: Token

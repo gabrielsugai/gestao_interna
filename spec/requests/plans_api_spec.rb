@@ -61,7 +61,7 @@ describe 'Plan management' do
       expect(response).to have_http_status(:not_found)
 
       json_response = JSON.parse(response.body, symbolize_names: true)
-      expect(json_response[:error]).to eq 'Plano não encontrado.'
+      expect(json_response[:error]).to eq 'Plano não encontrad@.'
     end
   end
 end

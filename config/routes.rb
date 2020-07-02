@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :bots, only: %i[create]
   resources :plans, only: %i[index show new create edit update]
-  resources :order_cancellation_requests, only: %i[index] do
+  resources :purchase_cancellations, only: %i[index] do
     post :approve, on: :member
     post :reject, on: :member
   end
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :companies, only: %i[create]
       resources :plans, only: %i[index show]
-      resources :orders, only: %i[create]
-      resources :order_cancellation_requests, only: %i[create]
+      resources :purchases, only: %i[create]
+      resources :purchase_cancellations, only: %i[create]
     end
   end
 end
