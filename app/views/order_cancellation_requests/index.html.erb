@@ -6,9 +6,9 @@
         <thead>
           <tr>
             <th><%= t('activerecord.attributes.order_cancellation_request.id') %></th>
-            <th><%= t('activerecord.attributes.company.name') %></th>
+            <th><%= t('activerecord.models.company.one') %></th>
             <th><%= t('activerecord.attributes.company.token') %></th>
-            <th><%= t('activerecord.attributes.plan.name') %></th>
+            <th><%= t('activerecord.models.plan.one') %></th>
             <th></th>
           </tr>
         </thead>
@@ -22,7 +22,8 @@
               <td><%= request.order.plan.name %></td>
 
               <td>
-                <%= link_to t('.approve'), order_cancellation_request_approve_path(request), method: :post %>
+                <%= link_to t('.approve'), approve_order_cancellation_request_path(request), method: :post %>
+                <%= link_to t('.reject'), reject_order_cancellation_request_path(request), method: :post %>
               </td>
             </tr>
           <% end %>

@@ -4,7 +4,18 @@ class OrderCancellationRequest < ApplicationRecord
 
   enum status: { open: 0, approved: 1, rejected: 2 }
 
-  validate :check_for_open_requests
+  validate :check_for_open_requests, on: :create
+
+  def approve!(user)
+    approved!
+    self.user = user
+    order.inactive!
+  end
+
+  def reject!(user)
+    rejected!
+    self.user = user
+  end
 
   private
 

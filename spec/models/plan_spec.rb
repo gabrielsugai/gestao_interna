@@ -7,6 +7,10 @@ RSpec.describe Plan, type: :model do
     expect(subject).to respond_to(:plan_prices)
   end
 
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
   it 'name must be unique' do
     subject.save
     new_plan = described_class.new(name: subject.name)

@@ -4,6 +4,7 @@ pt-BR:
     models:
       company:
         one: Empresa
+        other: Empresas
 
     attributes:
       attr_defaults: &attr_defaults
@@ -11,10 +12,11 @@ pt-BR:
         created_at: Criado
         updated_at: Alterado
         deleted_at: Excluído
+
+      company:
+        <<: *attr_defaults
         name: Nome
         address: Endereço
         corporate_name: Razão social
         cnpj: CNPJ
-        token: token
-      company:
-        <<: *attr_defaults
+        token: Token

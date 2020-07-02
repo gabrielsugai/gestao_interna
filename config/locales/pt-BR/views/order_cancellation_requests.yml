@@ -1,0 +1,6 @@
+---
+pt-BR:
+  order_cancellation_requests:
+    index:
+      approve: Aprovar
+      reject: Rejeitar

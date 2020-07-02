@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_202704) do
+ActiveRecord::Schema.define(version: 2020_07_02_210313) do
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_202704) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reason"
     t.index ["order_id"], name: "index_order_cancellation_requests_on_order_id"
     t.index ["user_id"], name: "index_order_cancellation_requests_on_user_id"
   end
@@ -42,8 +43,11 @@ ActiveRecord::Schema.define(version: 2020_06_30_202704) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
+    t.string "token"
     t.index ["company_id"], name: "index_orders_on_company_id"
     t.index ["plan_id"], name: "index_orders_on_plan_id"
+    t.index ["token"], name: "index_orders_on_token", unique: true
   end
 
   create_table "plan_prices", force: :cascade do |t|

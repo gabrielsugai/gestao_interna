@@ -5,3 +5,14 @@ pt-BR:
       order:
         one: Pedido
         other: Pedidos
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+
+    order:
+      <<: *attr_defaults
+      token: Token
