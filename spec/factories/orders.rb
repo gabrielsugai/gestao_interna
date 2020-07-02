@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :order do
-    company { nil }
-    plan { nil }
+    company
+    plan
     price { 1.5 }
-    email { "MyString" }
+    email { 'company@test.com' }
   end
 end

@@ -5,3 +5,5 @@ pt-BR:
       v1:
         errors:
           not_found: '%{model} não encontrado.'
+          token: 'Token não encontrado'
+          plan: 'Plano não encontrado'
