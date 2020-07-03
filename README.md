@@ -79,3 +79,103 @@
   - Status de comunicação devolvido será: **404**
 - Compra já possui solicitação de cancelamento em aberto:
   - Status de comunicação devolvido será: **400**
+
+### Lista de Planos
+
+#### Descrição
+
+<p align="justify">Este endpoint permite a listagem de todos os planos cadastrados no sistema de gestão e seus detalhes.</p>
+
+#### Parametros necessarios
+
+##### Todos os planos
+
+- Não precisa parametros
+
+##### Um plano por identificador
+
+- O identificador do plano na rota.
+- Exemplo: **/api/v1/plans/42**
+
+#### Parametros devolvidos
+
+##### Todos os planos
+
+- Status da comunicação 200
+- **Todos os dados serão enviados como um JSON**
+
+##### Um plano por identificador
+
+- Status da comunicação 200
+- **Todos os dados serão enviados como um JSON**
+
+#### Verbo HTTP
+
+##### Todos os planos
+
+- Deve ser realizada uma requisição na seguinte rota:
+  - **GET /api/v1/plans**
+- A rota retorna um array com todos os planos:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "quasi",
+    "created_at": "2020-07-02T18:55:52.827-03:00",
+    "updated_at": "2020-07-02T18:55:52.827-03:00",
+    "platforms": "MyString",
+    "limit_daily_chat": 1,
+    "limit_monthly_chat": 1,
+    "limit_daily_messages": 1,
+    "limit_monthly_messages": 1,
+    "extra_message_price": 1.5,
+    "extra_chat_price": 1.5,
+    "current_price": 595.08
+  },
+  {
+    "id": 2,
+    "name": "vel",
+    "created_at": "2020-07-02T18:55:52.869-03:00",
+    "updated_at": "2020-07-02T18:55:52.869-03:00",
+    "platforms": "MyString",
+    "limit_daily_chat": 1,
+    "limit_monthly_chat": 1,
+    "limit_daily_messages": 1,
+    "limit_monthly_messages": 1,
+    "extra_message_price": 1.5,
+    "extra_chat_price": 1.5,
+    "current_price": 775.65
+  }
+]
+```
+
+##### Um plano por identificador
+
+- Deve ser realizada uma requisição na seguinte rota:
+  - **GET /api/v1/plans/42**
+- A rota retorna um array com os dados do plano:
+
+```json
+{
+  "id": 42,
+  "name": "quasi",
+  "created_at": "2020-07-02T18:55:52.827-03:00",
+  "updated_at": "2020-07-02T18:55:52.827-03:00",
+  "platforms": "MyString",
+  "limit_daily_chat": 1,
+  "limit_monthly_chat": 1,
+  "limit_daily_messages": 1,
+  "limit_monthly_messages": 1,
+  "extra_message_price": 1.5,
+  "extra_chat_price": 1.5,
+  "current_price": 595.08
+}
+```
+
+#### Possiveis erros
+
+##### Um plano por identificador
+
+- Plano não encontrado:
+  - Status de comunicação devolvido será: **404**
