@@ -2,7 +2,7 @@ module Api
   module V1
     class PlansController < ActionController::API
       def index
-        @plans = Plan.all
+        @plans = Plan.active
 
         render json: @plans.to_json(methods: [:current_price])
       end

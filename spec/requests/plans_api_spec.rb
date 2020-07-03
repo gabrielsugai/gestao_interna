@@ -30,6 +30,29 @@ describe 'Plan management' do
 
       expect(json_response).to be_empty
     end
+
+    it 'only return active plans' do
+      active_plan = create(:plan)
+      create(:plan, :inactive)
+
+      get api_v1_plans_path
+
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response.count).to eq(1)
+      expect(json_response.first).to include(
+        name: active_plan.name,
+        platforms: active_plan.platforms,
+        limit_daily_chat: active_plan.limit_daily_chat,
+        limit_monthly_chat: active_plan.limit_monthly_chat,
+        limit_daily_messages: active_plan.limit_daily_messages,
+        limit_monthly_messages: active_plan.limit_monthly_messages,
+        extra_message_price: active_plan.extra_message_price,
+        extra_chat_price: active_plan.extra_chat_price,
+        current_price: active_plan.current_price,
+        status: 'active'
+      )
+    end
   end
 
   context 'GET /api/v1/plans/:id' do

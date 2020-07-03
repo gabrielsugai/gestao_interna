@@ -15,6 +15,10 @@ RSpec.describe Plan, type: :model do
     expect(new_plan.errors[:name]).to include('já está em uso')
   end
 
+  it 'status should default to active' do
+    expect(subject.status).to eq('active')
+  end
+
   it 'should create a plan_price before saving' do
     subject.price = '99.9'
     subject.save
