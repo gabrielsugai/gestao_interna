@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :plan do
     price { Faker::Number.unique.decimal(l_digits: 3, r_digits: 2) }
-    name { Faker::Lorem.unique.word }
+    name { Faker::Lorem.unique.sentence }
     platforms { 'MyString' }
     limit_daily_chat { 1 }
     limit_monthly_chat { 1 }
