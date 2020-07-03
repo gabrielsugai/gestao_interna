@@ -4,30 +4,19 @@
 
   <section>
 
-      <table class="col">
+      <table class="col-12 table">
         <thead>
           <tr>
-            <th><%= t('activerecord.attributes.purchase_cancellation.id') %></th>
-            <th><%= t('activerecord.models.company.one') %></th>
-            <th><%= t('activerecord.attributes.company.token') %></th>
-            <th><%= t('activerecord.models.plan.one') %></th>
-            <th></th>
+            <th scope="col"><%= t('activerecord.attributes.purchase_cancellation.id') %></th>
+            <th scope="col"><%= t('activerecord.models.company.one') %></th>
+            <th scope="col"><%= t('activerecord.models.plan.one') %></th>
+            <th scope="col"></th>
           </tr>
         </thead>
 
         <tbody>
-          <% @purchase_cancellations.each do |request| %>
-            <tr id="request-<%= request.id %>">
-              <td><%= request.id %></td>
-              <td><%= request.purchase.company.name %></td>
-              <td><%= request.purchase.company.token %></td>
-              <td><%= request.purchase.plan.name %></td>
-
-              <td>
-                <%= link_to t('.approve'), approve_purchase_cancellation_path(request), method: :post %>
-                <%= link_to t('.reject'), reject_purchase_cancellation_path(request), method: :post %>
-              </td>
-            </tr>
+          <% @purchase_cancellations.each do |purchase_cancellation| %>
+            <%= render 'table_row', purchase_cancellation: purchase_cancellation %>
           <% end %>
         </tbody>
       </table>

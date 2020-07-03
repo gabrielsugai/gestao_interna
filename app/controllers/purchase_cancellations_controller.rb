@@ -3,6 +3,10 @@ class PurchaseCancellationsController < ApplicationController
     @purchase_cancellations = PurchaseCancellation.where(status: 'open')
   end
 
+  def show
+    @purchase_cancellation = PurchaseCancellation.find(params[:id])
+  end
+
   def approve
     purchase_cancellation = PurchaseCancellation.find(params[:id])
     purchase_cancellation.approve!(current_user)

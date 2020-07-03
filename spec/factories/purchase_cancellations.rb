@@ -3,5 +3,9 @@ FactoryBot.define do
     purchase
     status { 0 }
     user { nil }
+
+    trait :with_a_reason do
+      reason { Faker::Lorem.sentence }
+    end
   end
 end

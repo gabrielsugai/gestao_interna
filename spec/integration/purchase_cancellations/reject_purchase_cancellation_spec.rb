@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'User can browse purchase cancellation request' do
-  scenario 'and approve one successfuly' do
+feature 'User can reject purchase cancellation request' do
+  scenario 'successfuly' do
     user = log_user_in!
     cancellation_requests = create_list(:purchase_cancellation, 3)
     cancellation_request = cancellation_requests.first
@@ -9,9 +9,10 @@ feature 'User can browse purchase cancellation request' do
     visit root_path
 
     click_on 'Solicitações de cancelamento'
-    within "tr#request-#{cancellation_request.id}" do
-      click_on 'Rejeitar'
+    within "tr#purchase_cancellation-#{cancellation_request.id}" do
+      click_on 'Detalhes'
     end
+    click_on 'Rejeitar'
 
     cancellation_request.reload
     expect(cancellation_request.status).to eq('rejected')

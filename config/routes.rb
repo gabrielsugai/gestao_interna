@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :bots, only: %i[create]
   resources :plans, only: %i[index show new create edit update]
-  resources :purchase_cancellations, only: %i[index] do
+  resources :purchase_cancellations, only: %i[index show] do
     post :approve, on: :member
     post :reject, on: :member
   end
