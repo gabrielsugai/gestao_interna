@@ -14,7 +14,7 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
-Style::ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/FrozenStringLiteralComment:
   Enabled: false
