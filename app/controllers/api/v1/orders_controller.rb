@@ -19,8 +19,8 @@ class Api::V1::OrdersController < Api::V1::ApiController
 
   def check_plan
     @plan = Plan.find(params[:order][:plan_id])
-    @price = params[:order][:price].nil? ? @plan.price : params[:order][:price]
-    # @price = params[:order][:price] || @plan.price
+    # @price = params[:order][:price].nil? ? @plan.price : params[:order][:price]
+    @price = params[:order][:price] || @plan.price
   rescue ActiveRecord::RecordNotFound
     render status: :ok,
             json: {
