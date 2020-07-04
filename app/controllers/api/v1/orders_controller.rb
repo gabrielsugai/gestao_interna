@@ -1,5 +1,4 @@
-class Api::V1::OrdersController < ApiController
-
+class Api::V1::OrdersController < Api::V1::ApiController
   before_action :check_company, :check_plan
 
   def create
@@ -14,7 +13,7 @@ class Api::V1::OrdersController < ApiController
   rescue ActiveRecord::RecordNotFound
     render status: :ok,
             json: {
-              errors: t('controllers.api.v1.errors.not_found.token')
+              error: t('.error', attribute: t('.token'))
             }
   end
 
@@ -25,7 +24,7 @@ class Api::V1::OrdersController < ApiController
   rescue ActiveRecord::RecordNotFound
     render status: :ok,
             json: {
-            errors: t('controllers.api.v1.errors.not_found.plan')
+              error: t('.error', attribute: t('.plan'))
             }
   end
 end
