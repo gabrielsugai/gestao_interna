@@ -33,5 +33,19 @@ describe 'Register Order' do
 
       expect(json_response[:error]).to eq 'Token não encontrado'
     end
+
+    it 'must receive order' do
+      post '/api/v1/orders'
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response[:error]).to eq 'Pedido não encontrado'
+    end
+
+    it 'must receive company token and plan id' do
+      post '/api/v1/orders', params: { order: { price: 40 } }
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response[:error]).to eq 'Token e plano não encontrados'
+    end
   end
 end
