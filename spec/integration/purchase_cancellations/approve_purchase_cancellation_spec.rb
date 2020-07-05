@@ -15,9 +15,9 @@ feature 'User can approve purchase cancellation request' do
     click_on 'Aprovar'
 
     cancellation_request.reload
-    expect(cancellation_request.status).to eq('approved')
+    expect(cancellation_request).to be_approved
     expect(cancellation_request.user).to eq(user)
-    expect(cancellation_request.purchase.status).to eq('inactive')
+    expect(cancellation_request.purchase).to be_inactive
 
     expect(current_path).to eq(purchase_cancellations_path)
     expect(page).to have_content('Solicitação de cancelamento aprovada!')

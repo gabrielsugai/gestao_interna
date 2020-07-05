@@ -20,7 +20,7 @@ class PurchaseCancellation < ApplicationRecord
   private
 
   def check_for_open_requests
-    open_requests = purchase.cancellation_requests.where(status: 'open')
+    open_requests = purchase.cancellation_requests.open
     return if open_requests.empty?
 
     errors.add(:purchase, :has_an_open_cancellation_request)

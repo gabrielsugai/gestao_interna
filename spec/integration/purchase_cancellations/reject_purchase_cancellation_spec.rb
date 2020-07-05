@@ -15,9 +15,9 @@ feature 'User can reject purchase cancellation request' do
     click_on 'Rejeitar'
 
     cancellation_request.reload
-    expect(cancellation_request.status).to eq('rejected')
+    expect(cancellation_request).to be_rejected
     expect(cancellation_request.user).to eq(user)
-    expect(cancellation_request.purchase.status).to eq('active')
+    expect(cancellation_request.purchase).to be_active
 
     expect(current_path).to eq(purchase_cancellations_path)
     expect(page).to have_content('Solicitação de cancelamento rejeitada!')

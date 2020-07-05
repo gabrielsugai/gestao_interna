@@ -1,6 +1,6 @@
 class PurchaseCancellationsController < ApplicationController
   def index
-    @purchase_cancellations = PurchaseCancellation.where(status: 'open')
+    @purchase_cancellations = PurchaseCancellation.open
   end
 
   def show
