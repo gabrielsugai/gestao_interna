@@ -8,7 +8,7 @@ class Bot < ApplicationRecord
   private
 
   def generate_token
-    self.token = loop do 
+    self.token = loop do
       token = SecureRandom.alphanumeric(6).upcase
       break token unless Bot.exists?(token: token)
     end
