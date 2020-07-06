@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_06_30_193401) do
+=======
+ActiveRecord::Schema.define(version: 2020_06_29_181535) do
+>>>>>>> 565b5f2e6e44c0e9a60912217a75902c79fb1ce8
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -19,6 +23,18 @@ ActiveRecord::Schema.define(version: 2020_06_30_193401) do
     t.boolean "blocked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+    t.string "corporate_name"
+    t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
+    t.index ["token"], name: "index_companies_on_token", unique: true
+  end
+
+  create_table "plan_prices", force: :cascade do |t|
+    t.integer "plan_id", null: false
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_plan_prices_on_plan_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -33,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_06_30_193401) do
   end
 
   create_table "plans", force: :cascade do |t|
-    t.float "price"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -59,6 +74,10 @@ ActiveRecord::Schema.define(version: 2020_06_30_193401) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "plans"
+=======
+  add_foreign_key "plan_prices", "plans"
+>>>>>>> 565b5f2e6e44c0e9a60912217a75902c79fb1ce8
 end

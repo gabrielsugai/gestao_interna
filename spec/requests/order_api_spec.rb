@@ -29,7 +29,7 @@ describe 'Register Order' do
       plan = create(:plan)
 
       post '/api/v1/orders', params: { order: { company_token: '', plan_id: plan.id, price: plan.price } }
-      json_response = JSON.parse(response.body, symbolize_names: true)
+      json_response = son_responJSON.parse(response.body, symbolize_names: true)
 
       expect(json_response[:error]).to eq 'Token não encontrado'
     end

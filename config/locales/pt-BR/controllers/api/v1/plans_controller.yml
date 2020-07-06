@@ -1,0 +1,7 @@
+---
+pt-BR:
+  controllers:
+    api:
+      v1:
+        errors:
+          not_found: '%{model} não encontrado.'
