@@ -1,36 +1,23 @@
-module Api
-  module V1
-    class PurchaseCancellationsController < ActionController::API
-      def create
-        @purchase = Purchase.find_by(token: params[:purchase][:token])
-        return purchase_not_found unless @purchase
+class Api::V1::PurchaseCancellationsController < Api::V1::ApiController
+  def create
+    @purchase = Purchase.find_by!(token: params[:purchase][:token])
 
-        cancellation_request = PurchaseCancellation.new(purchase: @purchase,
-                                                        reason: params[:reason])
+    cancellation_request = PurchaseCancellation.new(purchase: @purchase,
+                                                    reason: params[:reason])
 
-        if cancellation_request.save
-          render json: {}, status: :ok
-        else
-          open_cancellation_request
-        end
-      end
-
-      private
-
-      def open_cancellation_request
-        render status: :bad_request,
-               json: {
-                 error: I18n.t('api.v1.errors.open_cancellation_request')
-               }
-      end
-
-      def purchase_not_found
-        render status: :not_found,
-               json: {
-                 error: I18n.t('api.v1.errors.not_found',
-                               model: Purchase.model_name.human)
-               }
-      end
+    if cancellation_request.save
+      render json: {}, status: :ok
+    else
+      open_cancellation_request
     end
+  end
+
+  private
+
+  def open_cancellation_request
+    render status: :bad_request,
+           json: {
+             error: I18n.t('api.v1.errors.open_cancellation_request')
+           }
   end
 end

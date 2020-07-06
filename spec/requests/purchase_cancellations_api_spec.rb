@@ -31,7 +31,7 @@ describe 'Purchase cancellation requests' do
       json_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(:not_found)
-      expect(json_response[:error]).to eq 'Compra não encontrad@.'
+      expect(json_response[:error]).to eq 'Compra não encontrada(o).'
     end
 
     it 'should return bad request if threre is an open cancellation request' do

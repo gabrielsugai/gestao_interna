@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseCancellation, type: :model do
-  let!(:subject) { create :purchase_cancellation }
+  subject { create :purchase_cancellation }
 
   it 'has relations' do
-    expect(subject).to respond_to(:user)
-    expect(subject).to respond_to(:purchase)
+    expect(subject).to belong_to(:purchase)
   end
 
   it 'is valid with valid attributes' do

@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-VALID_TOKEN_REGEX = /[0-9A-Z]{6}/.freeze
-
 RSpec.describe Purchase, type: :model do
-  let!(:subject) { create :purchase }
+  subject { create :purchase }
 
   it 'has relations' do
-    expect(subject).to respond_to(:plan)
-    expect(subject).to respond_to(:cancellation_requests)
+    expect(subject).to belong_to(:plan)
+    expect(subject).to belong_to(:company)
+    expect(subject).to have_many(:cancellation_requests).class_name('PurchaseCancellation')
   end
 
   it 'is valid with valid attributes' do
@@ -18,7 +17,7 @@ RSpec.describe Purchase, type: :model do
     it 'should generate a token when created' do
       subject.save
 
-      expect(subject.token).to match VALID_TOKEN_REGEX
+      expect(subject.token).to match RegexSupport::VALID_TOKEN_REGEX
     end
 
     it 'should generate an unique token' do
