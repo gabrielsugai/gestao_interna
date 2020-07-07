@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_193518) do
+ActiveRecord::Schema.define(version: 2020_07_07_214636) do
+
+  create_table "bot_chats", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "platform"
+    t.string "external_token"
+    t.integer "bot_id", null: false
+    t.integer "message_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bot_id"], name: "index_bot_chats_on_bot_id"
+    t.index ["external_token"], name: "index_bot_chats_on_external_token", unique: true
+  end
 
   create_table "bots", force: :cascade do |t|
     t.integer "company_id", null: false
@@ -96,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_193518) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bot_chats", "bots"
   add_foreign_key "bots", "companies"
   add_foreign_key "bots", "purchases"
   add_foreign_key "plan_prices", "plans"
