@@ -10,21 +10,21 @@ class Api::V1::OrdersController < Api::V1::ApiController
 
   def check_company
     @company = Company.find_by!(token: params[:order][:company_token])
-  rescue ActiveRecord::RecordNotFound
-    render status: :not_found,
-           json: {
-             error: t('.error', attribute: t('.token'))
-           }
+  # rescue ActiveRecord::RecordNotFound
+  #   render status: :not_found,
+  #          json: {
+  #            error: t('.error', attribute: t('.token'))
+  #          }
   end
 
   def check_plan
     @plan = Plan.find(params[:order][:plan_id])
     @price = params[:order][:price] || @plan.price
-  rescue ActiveRecord::RecordNotFound
-    render status: :not_found,
-           json: {
-             error: t('.error', attribute: t('.plan'))
-           }
+  # rescue ActiveRecord::RecordNotFound
+  #   render status: :not_found,
+  #          json: {
+  #            error: t('.error', attribute: t('.plan'))
+  #          }
   end
 
   def check_order
@@ -37,7 +37,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   end
 
   def check_plan_order
-    return unless params[:order][:plan_id].nil? && params[:order][:company_token].nil?
+    return unless params[:order][:company_token].nil? && params[:order][:plan_id].nil?
 
     render status: :ok,
            json: {

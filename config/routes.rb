@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :plans, only: %i[index show]
       resources :companies, only:  %i[create]
+      resources :orders, only:  %i[create]
     end
   end
 end

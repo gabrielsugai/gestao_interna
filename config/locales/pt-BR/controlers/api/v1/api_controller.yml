@@ -9,9 +9,10 @@ pt-BR:
     v1:
       orders:
         create:
-          error: '%{attribute} não encontrado'
+          error: '%{attribute} não encontrado.'
           errors: 'Token e plano não encontrados'
           token: Token
           plan: Plano
           order: Pedido
+  not_found: '%{model} não encontrado.'
 

@@ -2,15 +2,13 @@ class Api::V1::ApiController < ActionController::API
   include AbstractController::Translation
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  private
 
-private
-
-  def not_found(exception)
-    binding.pry
-    exeception.record.new_record? ?
-		# render status: :not_found
-		# 	     json: {
-		# 		    error: t(exception)
-    #        }        
-  end                          
+  rescue_from 'ActiveRecord::RecordNotFound' do |exception|
+    render status: :not_found,
+    json: {
+      error: t('not_found',
+                    model: exception.model.constantize.model_name.human)
+    }
+  end
 end

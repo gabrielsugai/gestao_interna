@@ -15,7 +15,7 @@ class Api::V1::PlansController < ActionController::API
                  error: I18n.t('controllers.api.v1.errors.not_found',
                                model: e.model.constantize.model_name.human)
                }
-      end
-    end
+    
+    
   end
 end
