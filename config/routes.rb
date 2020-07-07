@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :bots, only: %i[create]
-  resources :plans, only: %i[index show new create edit update]
+  resources :plans, only: %i[index show new create edit update] do
+    post :deactivate, on: :member
+    post :activate, on: :member
+  end
   resources :purchase_cancellations, only: %i[index show] do
     post :approve, on: :member
     post :reject, on: :member

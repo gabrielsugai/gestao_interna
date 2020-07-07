@@ -35,6 +35,22 @@ class PlansController < ApplicationController
     end
   end
 
+  def deactivate
+    plan = Plan.find(params[:id])
+    plan.deactivate!
+    plan.save
+
+    redirect_to plans_path, success: t('flash.plan.deactivated')
+  end
+
+  def activate
+    plan = Plan.find(params[:id])
+    plan.activate!
+    plan.save
+
+    redirect_to plans_path, success: t('flash.plan.activated')
+  end
+
   private
 
   def plan_params

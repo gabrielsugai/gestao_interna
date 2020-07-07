@@ -33,4 +33,16 @@
   <dd><%= number_to_currency @plan.extra_chat_price %></dd>
 </dl>
 
-<%= link_to t('views.navigation.edit'), edit_plan_path(@plan) %>
+<nav>
+  <% if @plan.active? %>
+    <%= link_to t('.deactivate'), deactivate_plan_path(@plan), 
+                method: :post, class: 'btn btn-outline-danger' %>
+  <% else %>
+    <%= link_to t('.activate'), activate_plan_path(@plan), 
+                method: :post, class: 'btn btn-outline-success' %>
+  <% end %>
+
+  <%= link_to t('views.navigation.edit'), edit_plan_path(@plan), 
+              class: 'btn btn-outline-primary'%>
+</nav>
+
