@@ -19,5 +19,5 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Enabled: true
   EnforcedStyle: 'compact'
