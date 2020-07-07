@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+  has_many :bots, dependent: :destroy
   validates :name, :address, :corporate_name, :cnpj, presence: true
   validates :cnpj, :token, uniqueness: true
   validates :cnpj, format: { with: %r{\A^\d{2,3}\.\d{3}\.\d{3}/\d{4}-\d{2}$\z} }

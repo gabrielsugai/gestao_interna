@@ -1,0 +1,20 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      bot:
+        one: Bot
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+        token: Token
+      bot:
+        <<: *attr_defaults
+      bot/status:
+        active: Ativo
+        canceled: Cancelado
+        blocked: Bloqueado
