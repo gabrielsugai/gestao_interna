@@ -1,0 +1,26 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      purchase_cancellation:
+        one: Solicitação de cancelamento
+        other: Solicitações de cancelamento
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+
+      purchase_cancellation:
+        <<: *attr_defaults
+        purchase: Compra
+        reason: Motivo
+
+    errors:
+      models:
+        purchase_cancellation:
+          attributes:
+            purchase:
+              has_an_open_cancellation_request: já possui uma solicitação de cancelamento em aberto.

@@ -30,6 +30,7 @@ require 'rspec/rails'
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 require 'support/devise_support.rb'
+require 'support/regex_support.rb'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -44,6 +45,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
 
   config.include DeviseSupport
+  config.include RegexSupport
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -77,4 +79,11 @@ RSpec.configure do |config|
   config.filter_gems_from_backtrace(/gems/)
 
   config.example_status_persistence_file_path = 'rspec.txt'
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
