@@ -84,7 +84,7 @@
 
 #### Descrição
 
-<p align="justify">Este endpoint permite a listagem de todos os planos cadastrados no sistema de gestão e seus detalhes.</p>
+<p align="justify">Este endpoint permite a listagem de todos os planos ativos cadastrados no sistema de gestão e seus detalhes.</p>
 
 #### Parametros necessarios
 
@@ -115,7 +115,7 @@
 
 - Deve ser realizada uma requisição na seguinte rota:
   - **GET /api/v1/plans**
-- A rota retorna um array com todos os planos:
+- A rota retorna um array com todos os planos ativos:
 
 ```json
 [

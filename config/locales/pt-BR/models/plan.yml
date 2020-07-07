@@ -30,7 +30,6 @@ pt-BR:
       plan/status:
         active: Ativo
         inactive: Inativo
-        
 
   plans:
     new:

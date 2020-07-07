@@ -19,6 +19,6 @@ class Plan < ApplicationRecord
   private
 
   def create_plan_price
-    PlanPrice.create(value: price, plan: self) unless current_price == price.to_f
+    PlanPrice.create!(value: price, plan: self) unless current_price == price.to_f
   end
 end
