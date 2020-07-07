@@ -1,15 +1,13 @@
-module Api
-  module V1
-    class CompaniesController < ActionController::API
-      def create
-        @company = Company.new(params.require(:company).permit(:name, :cnpj, :address, :corporate_name))
+class Api::V1::CompaniesController < Api::V1::ApiController
+  def create
+    @company = Company.create!(company_params)
 
-        if @company.save
-          render json: @company, status: :created
-        else
-          render json: { error: @company.errors.full_messages }, status: :unprocessable_entity
-        end
-      end
-    end
+    render json: @company, status: :created
+  end
+
+  private
+
+  def company_params
+    params.require(:company).permit(:name, :cnpj, :address, :corporate_name)
   end
 end

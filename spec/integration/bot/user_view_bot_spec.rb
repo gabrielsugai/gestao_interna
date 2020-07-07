@@ -5,14 +5,14 @@ feature 'system start bot' do
     log_user_in!
     company = create(:company)
     plan = create(:plan)
-    order = Order.create(company: company, plan: plan)
-    newbot = Bot.create(order: order, company: order.company)
+    purchase = Purchase.create(company: company, plan: plan)
+    newbot = Bot.create(purchase: purchase, company: purchase.company)
 
     visit root_path
     click_on 'Bots'
 
     expect(page).to have_content(newbot.company.name)
-    expect(page).to have_content(newbot.order.plan.name)
+    expect(page).to have_content(newbot.purchase.plan.name)
     expect(page).to have_content('Ativo')
     expect(newbot.token).to_not be_blank
   end

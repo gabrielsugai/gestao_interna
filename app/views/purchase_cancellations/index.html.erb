@@ -1,0 +1,24 @@
+<h1>
+  <%= t('activerecord.models.purchase_cancellation.other') %>
+</h1>
+
+  <section>
+
+      <table class="col-12 table">
+        <thead>
+          <tr>
+            <th scope="col"><%= t('activerecord.attributes.purchase_cancellation.id') %></th>
+            <th scope="col"><%= t('activerecord.models.company.one') %></th>
+            <th scope="col"><%= t('activerecord.models.plan.one') %></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @purchase_cancellations.each do |purchase_cancellation| %>
+            <%= render 'table_row', purchase_cancellation: purchase_cancellation %>
+          <% end %>
+        </tbody>
+      </table>
+
+  </section>

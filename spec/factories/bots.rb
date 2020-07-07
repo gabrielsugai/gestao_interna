@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :bot do
     company
-    order
+    purchase
     status { 0 }
     token { 'MMM000' }
   end

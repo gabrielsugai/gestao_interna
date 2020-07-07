@@ -1,0 +1,9 @@
+<tr id="purchase_cancellation-<%= purchase_cancellation.id %>">
+  <td><%= purchase_cancellation.id %></td>
+  <td><%= purchase_cancellation.purchase.company.name %></td>
+  <td><%= purchase_cancellation.purchase.plan.name %></td>
+
+  <td>
+    <%= link_to t('views.navigation.details'), purchase_cancellation_path(purchase_cancellation) %>
+  </td>
+</tr>

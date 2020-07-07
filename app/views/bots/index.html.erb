@@ -5,10 +5,10 @@
 <div>
   <% @bots.each do |bot|%>
   <ul>
-    <%= bot.company.name %>
-    <%= bot.order.plan.name %>
-    <%= Bot.human_attribute_name("status.#{bot.status}") %>
-    <%= bot.token %>
+    <li><%= bot.company.name %></li>
+    <li><%= bot.purchase.plan.name %></li>
+    <li><%= Bot.human_attribute_name("status.#{bot.status}") %></li>
+    <li><%= bot.token %></li>
   </ul>
 <% end %>
 </div>
