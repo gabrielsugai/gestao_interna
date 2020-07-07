@@ -131,6 +131,7 @@
     "limit_monthly_messages": 1,
     "extra_message_price": 1.5,
     "extra_chat_price": 1.5,
+    "status": "active",
     "current_price": 595.08
   },
   {
@@ -145,6 +146,7 @@
     "limit_monthly_messages": 1,
     "extra_message_price": 1.5,
     "extra_chat_price": 1.5,
+    "status": "active",
     "current_price": 775.65
   }
 ]
@@ -169,6 +171,7 @@
   "limit_monthly_messages": 1,
   "extra_message_price": 1.5,
   "extra_chat_price": 1.5,
+  "status": "active",
   "current_price": 595.08
 }
 ```
