@@ -2,9 +2,9 @@
 pt-BR:
   activerecord:
     models:
-      company:
-        one: Empresa
-        other: Empresas
+      purchase:
+        one: Compra
+        other: Compras
 
     attributes:
       attr_defaults: &attr_defaults
@@ -13,10 +13,6 @@ pt-BR:
         updated_at: Alterado
         deleted_at: Excluído
 
-      company:
+      purchase:
         <<: *attr_defaults
-        name: Nome
-        address: Endereço
-        corporate_name: Razão social
-        cnpj: CNPJ
         token: Token
