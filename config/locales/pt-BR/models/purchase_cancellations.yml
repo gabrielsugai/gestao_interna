@@ -15,4 +15,12 @@ pt-BR:
 
       purchase_cancellation:
         <<: *attr_defaults
+        purchase: Compra
         reason: Motivo
+
+    errors:
+      models:
+        purchase_cancellation:
+          attributes:
+            purchase:
+              has_an_open_cancellation_request: já possui uma solicitação de cancelamento em aberto.

@@ -4,5 +4,3 @@ pt-BR:
     v1:
       errors:
         not_found: '%{model} não encontrada(o).'
-        open_cancellation_request: Esta compra já possui uma solicitação de cancelamento em aberto.
-

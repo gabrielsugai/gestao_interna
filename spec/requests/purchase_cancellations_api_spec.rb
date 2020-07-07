@@ -42,9 +42,9 @@ describe 'Purchase cancellation requests' do
            params: { purchase: { token: purchase.token } }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
-      expect(response).to have_http_status(:bad_request)
+      expect(response).to have_http_status(:unprocessable_entity)
       expect(purchase.cancellation_requests.count).to eq(1)
-      expect(json_response[:error]).to eq 'Esta compra já possui uma solicitação de cancelamento em aberto.'
+      expect(json_response[:error]).to eq ['Compra já possui uma solicitação de cancelamento em aberto.']
     end
   end
 end
