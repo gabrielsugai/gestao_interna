@@ -34,7 +34,7 @@ describe 'Purchase cancellation requests' do
       expect(json_response[:error]).to eq 'Compra não encontrada(o).'
     end
 
-    it 'should return bad request if threre is an open cancellation request' do
+    it 'should return unprocessable entity if threre is an open cancellation request' do
       purchase = create(:purchase)
       create(:purchase_cancellation, purchase: purchase)
 

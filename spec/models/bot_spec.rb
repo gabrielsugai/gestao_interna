@@ -6,6 +6,7 @@ RSpec.describe Bot, type: :model do
   it 'has relations' do
     expect(subject).to belong_to(:company)
     expect(subject).to belong_to(:purchase)
+    expect(subject).to have_many(:chats).class_name('BotChat')
   end
 
   it 'is valid with valid attributes' do
