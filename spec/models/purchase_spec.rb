@@ -6,6 +6,7 @@ RSpec.describe Purchase, type: :model do
   it 'has relations' do
     expect(subject).to belong_to(:plan)
     expect(subject).to belong_to(:company)
+    expect(subject).to have_many(:bots)
     expect(subject).to have_many(:cancellation_requests).class_name('PurchaseCancellation')
   end
 

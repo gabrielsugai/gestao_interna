@@ -2,6 +2,7 @@ class Purchase < ApplicationRecord
   belongs_to :company
   belongs_to :plan
 
+  has_many :bots, dependent: :restrict_with_error
   has_many :cancellation_requests, class_name: 'PurchaseCancellation',
                                    dependent: :destroy
 
