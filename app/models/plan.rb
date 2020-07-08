@@ -14,6 +14,16 @@ class Plan < ApplicationRecord
     plan_prices.last&.value
   end
 
+  def inactive!
+    @price ||= current_price
+    super
+  end
+
+  def active!
+    @price ||= current_price
+    super
+  end
+
   private
 
   def create_plan_price
