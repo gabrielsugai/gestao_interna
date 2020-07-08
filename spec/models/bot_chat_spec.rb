@@ -17,4 +17,23 @@ RSpec.describe BotChat, type: :model do
     expect(subject).to validate_presence_of(:platform)
     expect(subject).to validate_presence_of(:bot)
   end
+
+  context 'start_time' do
+    it 'must be in the past' do
+      subject.start_time = 1.hour.from_now
+
+      expect(subject).to_not be_valid
+      expect(subject.errors[:start_time]).to include('não pode ser no futuro.')
+    end
+  end
+
+  context 'end_time' do
+    it 'must be after start_time' do
+      subject.start_time = 1.hour.ago
+      subject.end_time = 2.hours.ago
+
+      expect(subject).to_not be_valid
+      expect(subject.errors[:end_time]).to include('deve ser depois do início da conversa.')
+    end
+  end
 end

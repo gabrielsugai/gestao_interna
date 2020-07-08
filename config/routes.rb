@@ -15,7 +15,9 @@ Rails.application.routes.draw do
       resources :plans, only: %i[index show]
       resources :purchases, only: %i[create]
       resources :purchase_cancellations, only: %i[create]
-      resources :bot_chats, only: %i[create]
+      resources :bot_chats, only: %i[create] do
+        post :finish, on: :collection
+      end
     end
   end
 end
