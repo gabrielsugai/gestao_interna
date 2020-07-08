@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :bots, only: %i[create]
+  resources :bots, only: %i[create index]
   resources :plans, only: %i[index show new create edit update] do
     post :deactivate, on: :member
     post :activate, on: :member
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       resources :plans, only: %i[index show]
       resources :purchases, only: %i[create]
       resources :purchase_cancellations, only: %i[create]
+      resources :bot_chats, only: %i[create] do
+        post :finish, on: :collection
+      end
     end
   end
 end

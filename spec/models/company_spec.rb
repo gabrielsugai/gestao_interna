@@ -14,12 +14,17 @@ RSpec.describe Company, type: :model do
     expect(subject).to validate_presence_of(:cnpj)
   end
 
+  it 'validates unique attributes' do
+    expect(subject).to validate_uniqueness_of(:cnpj).case_insensitive
+    expect(subject).to validate_uniqueness_of(:token)
+  end
+
   context 'token' do
     it 'should generate a token on create' do
       expect(subject.token).to match RegexSupport::VALID_TOKEN_REGEX
     end
 
-    it 'token must be unique' do
+    it 'generates a unique token' do
       company = build(:company)
       allow(SecureRandom).to receive(:alphanumeric).and_return(subject.token, 'ABC123')
       company.save
@@ -40,13 +45,6 @@ RSpec.describe Company, type: :model do
 
       expect(subject).to_not be_valid
       expect(subject.errors[:cnpj]).to include('não é válido')
-    end
-
-    it 'must be unique' do
-      create(:company, cnpj: '22.927.293/0001-90')
-      company = build(:company, cnpj: '22.927.293/0001-90')
-      expect(company).to_not be_valid
-      expect(company.errors[:cnpj]).to include('já está em uso')
     end
   end
 end
