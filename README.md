@@ -179,3 +179,93 @@
 
 - Plano não encontrado:
   - Status de comunicação devolvido será: **404**
+
+### Iniciar conversa de Bot
+
+#### Descrição
+
+<p align="justify">A API de conversa de Bot permite registrar o início de uma conversa que o bot fez com um cliente.</p>
+
+#### Parametros necessarios
+
+- Token do Bot no nosso sistema [bot][token]
+- Identificador da conversa no sistema externo [bot_chat][external_token]
+- Plataforma onde ocorreu a conversa [bot_chat][platform]
+- Tempo de início da conversa [bot_chat][start_time]
+- **Todos os dados devem ser enviados como um JSON**
+- **Exemplo:**
+
+```json
+{
+  "bot": {
+    "token": "M5KJHU"
+  },
+  "bot_chat": {
+    "external_token": "skdpofmp3201qjoifjpkp",
+    "platform": "Whatsapp",
+    "start_time": "2020-07-07 18:46:36"
+  }
+}
+```
+
+#### Verbo HTTP
+
+- **POST**
+- Os dados devem ser enviados para seguinte rota:
+  - **/api/v1/bot_chats**
+
+#### Parametros devolvidos
+
+- Status da comunicação 200
+- **Todos os dados serão enviados como um JSON**
+
+#### Possiveis erros
+
+- Bot não encontrado por Token:
+  - Status de comunicação devolvido será: **404**
+- Já existe uma conversa de bot cadastrada com o mesmo identificador externo:
+  - Status de comunicação devolvido será: **422**
+
+### Encerrar conversa de Bot
+
+#### Descrição
+
+<p align="justify">Complementando a API de conversa de Bot, criamos uma action que recebe os dados da conversa e quantidade de mensagens, assim encerrando uma conversa do bot e cadastrando todos os dados para controle do sistema. </p>
+
+#### Parametros necessarios
+
+- Identificador da conversa no sistema externo [bot_chat][external_token]
+- Tempo que a conversa foi encerrada [bot_chat][end_time]
+- Quantidade de mensagens trocadas [bot_chat][message_count]
+- **Todos os dados devem ser enviados como um JSON**
+- **Exemplo:**
+
+```json
+{
+  "bot_chat": {
+    "external_token": "dasd",
+    "end_time": "2020-07-07 19:46:36",
+    "message_count": 42
+  }
+}
+```
+
+#### Verbo HTTP
+
+- **POST**
+- Os dados devem ser enviados para seguinte rota:
+  - **/api/v1/bot_chats/finish**
+
+#### Parametros devolvidos
+
+- Status da comunicação 200
+- **Todos os dados serão enviados como um JSON**
+
+#### Possiveis erros
+
+- Status de comunicação devolvido será: **404**
+
+  - Conversa não encontrada por Token
+
+- Status de comunicação devolvido será: **422**
+  - Tempo de termino(end_time) ocorreu antes do tempo de inicio da conversa(start_time)
