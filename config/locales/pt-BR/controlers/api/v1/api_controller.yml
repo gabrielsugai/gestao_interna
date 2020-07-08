@@ -7,12 +7,12 @@ pt-BR:
           not_found: '%{model} não encontrado.'
   api:
     v1:
-      orders:
+      purchases:
         create:
           error: '%{attribute} não encontrado.'
           errors: 'Token e Plano não encontrados.'
           token: Token
           plan: Plano
-          order: Pedido
+          purchase: Compra
   not_found: '%{model} não encontrado.'
 

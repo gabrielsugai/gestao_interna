@@ -1,78 +1,50 @@
 require 'rails_helper'
 
-describe Company do
-  context 'Receving datas' do
-    context '#token' do
-      it 'should generate a token on create' do
-        company = build(:company)
+RSpec.describe Company, type: :model do
+  subject { create :company }
 
-        company.save
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
 
-        expect(company.token).to_not be_blank
-      end
+  it 'validates mandatory attributes' do
+    expect(subject).to validate_presence_of(:name)
+    expect(subject).to validate_presence_of(:address)
+    expect(subject).to validate_presence_of(:corporate_name)
+    expect(subject).to validate_presence_of(:cnpj)
+  end
 
-      it 'token must be unique' do
-        company = build(:company)
-        another_company = create(:company)
-        allow(SecureRandom).to receive(:alphanumeric).and_return(another_company.token, 'ABC123')
-        company.save
-        expect(company.token).not_to eq(another_company.token)
-      end
+  it 'validates unique attributes' do
+    expect(subject).to validate_uniqueness_of(:cnpj).case_insensitive
+    expect(subject).to validate_uniqueness_of(:token)
+  end
+
+  context 'token' do
+    it 'should generate a token on create' do
+      expect(subject.token).to match RegexSupport::VALID_TOKEN_REGEX
     end
 
-    context '#cnpj' do
-      it 'cannot be blank' do
-        company = build(:company, cnpj: '')
+    it 'generates a unique token' do
+      company = build(:company)
+      allow(SecureRandom).to receive(:alphanumeric).and_return(subject.token, 'ABC123')
+      company.save
+      expect(company.token).not_to eq(subject.token)
+    end
+  end
 
-        company.save
+  context 'cnpj' do
+    it 'must be a valid format' do
+      subject.cnpj = '22.97.293/0001-90'
 
-        expect(company.errors[:cnpj]).to include('não pode ficar em branco')
-      end
-
-      it 'must be a valid format' do
-        company = build(:company, cnpj: '22.97.293/0001-90')
-        company.save
-        expect(company.errors[:cnpj]).to include('não é válido')
-      end
-
-      it 'must be ponctuated' do
-        company = build(:company, cnpj: '22927293000190')
-        company.save
-        expect(company.errors[:cnpj]).to include('não é válido')
-      end
-
-      it 'must be unique' do
-        create(:company, cnpj: '22.927.293/0001-90')
-        company = build(:company, cnpj: '22.927.293/0001-90')
-        company.valid?
-        expect(company.errors[:cnpj]).to include('já está em uso')
-      end
+      expect(subject).to_not be_valid
+      expect(subject.errors[:cnpj]).to include('não é válido')
     end
 
-    context 'blank attributes' do
-      it 'name cannot be blank' do
-        company = build(:company, name: '')
+    it 'must be ponctuated' do
+      subject.cnpj = '22927293000190'
 
-        company.save
-
-        expect(company.errors[:name]).to include('não pode ficar em branco')
-      end
-
-      it 'address cannot be blank' do
-        company = build(:company, address: '')
-
-        company.save
-
-        expect(company.errors[:address]).to include('não pode ficar em branco')
-      end
-
-      it 'corporate name cannot be blank' do
-        company = build(:company, corporate_name: '')
-
-        company.save
-
-        expect(company.errors[:corporate_name]).to include('não pode ficar em branco')
-      end
+      expect(subject).to_not be_valid
+      expect(subject.errors[:cnpj]).to include('não é válido')
     end
   end
 end

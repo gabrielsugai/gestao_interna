@@ -1,18 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Plan, type: :model do
-  let!(:subject) { create :plan }
+  subject { create :plan }
 
   it 'has relations' do
-    expect(subject).to respond_to(:plan_prices)
+    expect(subject).to have_many(:plan_prices)
   end
 
-  it 'name must be unique' do
-    subject.save
-    new_plan = described_class.new(name: subject.name)
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
 
-    expect(new_plan).not_to be_valid
-    expect(new_plan.errors[:name]).to include('já está em uso')
+  it 'validates mandatory attributes' do
+    expect(subject).to validate_presence_of(:name)
+    expect(subject).to validate_presence_of(:price)
+    expect(subject).to validate_presence_of(:platforms)
+    expect(subject).to validate_presence_of(:limit_daily_chat)
+    expect(subject).to validate_presence_of(:limit_monthly_chat)
+    expect(subject).to validate_presence_of(:limit_daily_messages)
+    expect(subject).to validate_presence_of(:limit_monthly_messages)
+    expect(subject).to validate_presence_of(:extra_message_price)
+    expect(subject).to validate_presence_of(:extra_chat_price)
+  end
+
+  it 'validates unique attributes' do
+    expect(subject).to validate_uniqueness_of(:name)
   end
 
   it 'should create a plan_price before saving' do

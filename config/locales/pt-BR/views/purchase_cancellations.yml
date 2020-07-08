@@ -1,0 +1,6 @@
+---
+pt-BR:
+  purchase_cancellations:
+    show:
+      approve: Aprovar
+      reject: Rejeitar
