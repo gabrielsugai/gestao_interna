@@ -3,14 +3,14 @@ class Api::V1::BotChatsController < Api::V1::ApiController
     bot = Bot.find_by!(token: params[:bot][:token])
     bot.chats.create!(create_bot_chat_params)
 
-    render json: {}, status: :no_content
+    head :no_content
   end
 
   def finish
     bot_chat = BotChat.find_by!(external_token: params[:bot_chat][:external_token])
     bot_chat.update!(finish_bot_chat_params)
 
-    render json: {}, status: :no_content
+    head :no_content
   end
 
   private
