@@ -11,7 +11,7 @@ FactoryBot.define do
     extra_chat_price { 1.5 }
 
     trait :inactive do
-      status { 1 }
+      status { :inactive }
     end
   end
 end

@@ -37,16 +37,16 @@ class PlansController < ApplicationController
 
   def deactivate
     plan = Plan.find(params[:id])
-    plan.deactivate!
-    plan.save
+    plan.price = plan.current_price
+    plan.inactive!
 
     redirect_to plans_path, success: t('flash.plan.deactivated')
   end
 
   def activate
     plan = Plan.find(params[:id])
-    plan.activate!
-    plan.save
+    plan.price = plan.current_price
+    plan.active!
 
     redirect_to plans_path, success: t('flash.plan.activated')
   end
