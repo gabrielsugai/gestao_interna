@@ -22,6 +22,7 @@ describe 'Plan management' do
         expect(json_response[index][:extra_message_price]).to eq(active_plans[index].extra_message_price)
         expect(json_response[index][:extra_chat_price]).to eq(active_plans[index].extra_chat_price)
         expect(json_response[index][:current_price]).to eq(active_plans[index].current_price)
+        expect(json_response[index][:status]).to eq('active')
       end
     end
 
