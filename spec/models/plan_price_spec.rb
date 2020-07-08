@@ -11,7 +11,7 @@ RSpec.describe PlanPrice, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'validates attributes' do
+  it 'validates mandatory attributes' do
     expect(subject).to validate_presence_of(:value)
   end
 end

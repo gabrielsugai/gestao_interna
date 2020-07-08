@@ -18,6 +18,10 @@ RSpec.describe BotChat, type: :model do
     expect(subject).to validate_presence_of(:bot)
   end
 
+  it 'validates unique attributes' do
+    expect(subject).to validate_uniqueness_of(:external_token)
+  end
+
   context 'start_time' do
     it 'must be in the past' do
       subject.start_time = 1.hour.from_now

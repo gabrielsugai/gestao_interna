@@ -11,7 +11,7 @@ describe 'Botchat tracking messages' do
                                  platform: 'Facebook',
                                  start_time: current_time } }
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(:no_content)
       expect(bot.chats.count).to eq(1)
       expect(bot.chats.first.external_token).to eq('ABC123')
       expect(bot.chats.first.platform).to eq('Facebook')
@@ -53,7 +53,7 @@ describe 'Botchat tracking messages' do
                                  message_count: 42 } }
 
       bot_chat.reload
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(:no_content)
       expect(bot_chat.end_time).to eq(current_time)
       expect(bot_chat.message_count).to eq(42)
     end
