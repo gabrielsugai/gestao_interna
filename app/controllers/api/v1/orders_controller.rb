@@ -37,7 +37,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   end
 
   def check_plan_order
-    return unless params[:order][:company_token].nil? && params[:order][:plan_id].nil?
+    return unless params[:order][:plan_id].nil? && params[:order][:company_token].nil?
 
     render status: :ok,
            json: {

@@ -41,10 +41,9 @@ describe 'Register Order' do
     end
 
     it 'must receive company token and plan id' do
-      post '/api/v1/orders', params: { order: { company_token: '', plan_id: '', price: 40 } }
+      post '/api/v1/orders', params: { order: { price: 40 } }
       json_response = JSON.parse(response.body, symbolize_names: true)
-      binding.pry
-      expect(json_response[:error]).to eq 'Empresa e Plano não encontrado.'
+      expect(json_response[:error]).to eq 'Token e Plano não encontrados.'
     end
   end
 end

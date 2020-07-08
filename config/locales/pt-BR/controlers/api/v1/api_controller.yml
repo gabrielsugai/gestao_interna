@@ -10,7 +10,7 @@ pt-BR:
       orders:
         create:
           error: '%{attribute} não encontrado.'
-          errors: 'Token e plano não encontrados'
+          errors: 'Token e Plano não encontrados.'
           token: Token
           plan: Plano
           order: Pedido
