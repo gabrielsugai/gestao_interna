@@ -17,6 +17,7 @@ pt-BR:
         <<: *attr_defaults
         name: Nome
         price: Valor mensal
+        current_price: Valor atual
         platforms: Plataformas
         limit_daily_chat: Limite de conversas por dia
         limit_monthly_chat: Limite de conversas por mês

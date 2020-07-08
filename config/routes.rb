@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :bots, only: %i[create index]
   resources :plans, only: %i[index show new create edit update]
+  resources :purchases, only: %i[index show]
   resources :purchase_cancellations, only: %i[index show] do
     post :approve, on: :member
     post :reject, on: :member
