@@ -4,11 +4,12 @@
 <% end %>
 <div>
   <% @bots.each do |bot|%>
-  <ul>
+  <ul id="bot-model-<%= bot.id %>">
     <li><%= bot.company.name %></li>
     <li><%= bot.purchase.plan.name %></li>
     <li><%= Bot.human_attribute_name("status.#{bot.status}") %></li>
     <li><%= bot.token %></li>
+    <li><%= link_to 'Ver detalhes', bot %></li>
   </ul>
 <% end %>
 </div>

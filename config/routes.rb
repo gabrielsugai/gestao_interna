@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'home#index'
-  resources :bots, only: %i[create, index]
+  resources :bots, only: %i[create index show] do
+    put :block
+  end
   resources :plans, only: %i[index show new create edit update]
   resources :purchase_cancellations, only: %i[index show] do
     post :approve, on: :member
