@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_181535) do
+ActiveRecord::Schema.define(version: 2020_07_07_193518) do
+
+  create_table "bots", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "status", default: 0
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "purchase_id", null: false
+    t.index ["company_id"], name: "index_bots_on_company_id"
+    t.index ["purchase_id"], name: "index_bots_on_purchase_id"
+    t.index ["token"], name: "index_bots_on_token", unique: true
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "token"
@@ -47,6 +59,31 @@ ActiveRecord::Schema.define(version: 2020_06_29_181535) do
     t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
+  create_table "purchase_cancellations", force: :cascade do |t|
+    t.integer "purchase_id", null: false
+    t.integer "status", default: 0
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "reason"
+    t.index ["purchase_id"], name: "index_purchase_cancellations_on_purchase_id"
+    t.index ["user_id"], name: "index_purchase_cancellations_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "plan_id", null: false
+    t.float "price"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
+    t.string "token"
+    t.index ["company_id"], name: "index_purchases_on_company_id"
+    t.index ["plan_id"], name: "index_purchases_on_plan_id"
+    t.index ["token"], name: "index_purchases_on_token", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,5 +96,11 @@ ActiveRecord::Schema.define(version: 2020_06_29_181535) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bots", "companies"
+  add_foreign_key "bots", "purchases"
   add_foreign_key "plan_prices", "plans"
+  add_foreign_key "purchase_cancellations", "purchases"
+  add_foreign_key "purchase_cancellations", "users"
+  add_foreign_key "purchases", "companies"
+  add_foreign_key "purchases", "plans"
 end
