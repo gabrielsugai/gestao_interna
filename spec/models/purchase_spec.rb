@@ -28,4 +28,23 @@ RSpec.describe Purchase, type: :model do
       expect(subject.token).not_to eq(another_purchase.token)
     end
   end
+
+  context 'validades' do
+    it 'company cannot be blank' do
+      purchase = Purchase.new
+
+      purchase.valid?
+
+      expect(purchase.errors[:company]).to include('é obrigatório(a)')
+    end
+
+    it 'plan cannot be blank' do
+      company = create(:company)
+      purchase = Purchase.new(company: company)
+
+      purchase.valid?
+
+      expect(purchase.errors[:plan]).to include('é obrigatório(a)')
+    end
+  end
 end

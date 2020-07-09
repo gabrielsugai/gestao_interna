@@ -2,6 +2,8 @@ class Bot < ApplicationRecord
   belongs_to :company
   belongs_to :purchase
   enum status: { active: 0, awaiting: 2, canceled: 5, blocked: 10 }
+  has_many :chats, class_name: 'BotChat', dependent: :restrict_with_error
+
   validates :token, uniqueness: true
   before_create :generate_token
 

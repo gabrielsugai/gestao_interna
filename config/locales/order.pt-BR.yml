@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      order: 
+        one: Pedido
+        other: Pedidos
+    attributes:
+      order:
+        plan: Plano
+        company: Empresa
+        price: Preço

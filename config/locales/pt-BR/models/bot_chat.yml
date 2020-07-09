@@ -1,0 +1,31 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      bot_chat:
+        one: Conversa de Bot
+        other: Conversas de Bot
+
+    attributes:
+      attr_defaults: &attr_defaults
+        id: ID
+        created_at: Criado
+        updated_at: Alterado
+        deleted_at: Excluído
+
+      bot_chat:
+        <<: *attr_defaults
+        start_time: Início da Conversa
+        end_time: Fim da Conversa
+        platform: Plataforma
+        external_token: Token externo
+        message_count: Número de mensagens
+
+    errors:
+      models:
+        bot_chat:
+          attributes:
+            start_time:
+              in_the_future: não pode ser no futuro.
+            end_time:
+              before_start_time: deve ser depois do início da conversa.

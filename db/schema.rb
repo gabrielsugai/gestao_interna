@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2020_07_09_190623) do
     t.index ["user_id"], name: "index_block_bots_on_user_id"
   end
 
+  create_table "bot_chats", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "platform"
+    t.string "external_token"
+    t.integer "bot_id", null: false
+    t.integer "message_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bot_id"], name: "index_bot_chats_on_bot_id"
+    t.index ["external_token"], name: "index_bot_chats_on_external_token", unique: true
+  end
+
   create_table "bots", force: :cascade do |t|
     t.integer "company_id", null: false
     t.integer "status", default: 0
@@ -65,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_190623) do
     t.integer "limit_monthly_messages"
     t.float "extra_message_price"
     t.float "extra_chat_price"
+    t.integer "status", default: 0
     t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
@@ -107,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_190623) do
 
   add_foreign_key "block_bots", "bots"
   add_foreign_key "block_bots", "users"
+  add_foreign_key "bot_chats", "bots"
   add_foreign_key "bots", "companies"
   add_foreign_key "bots", "purchases"
   add_foreign_key "plan_prices", "plans"

@@ -4,6 +4,7 @@ pt-BR:
     models:
       bot:
         one: Bot
+        other: Bots
 
     attributes:
       attr_defaults: &attr_defaults
@@ -11,9 +12,11 @@ pt-BR:
         created_at: Criado
         updated_at: Alterado
         deleted_at: Excluído
-        token: Token
+
       bot:
         <<: *attr_defaults
+        token: Token
+
       bot/status:
         active: Ativo
         canceled: Cancelado

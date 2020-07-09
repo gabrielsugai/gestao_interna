@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       post :confirm, on: :member
     end
   end
-  resources :plans, only: %i[index show new create edit update]
+
+  resources :plans, only: %i[index show new create edit update] do
+    post :deactivate, on: :member
+    post :activate, on: :member
+  end
   resources :purchase_cancellations, only: %i[index show] do
     post :approve, on: :member
     post :reject, on: :member
@@ -19,6 +23,9 @@ Rails.application.routes.draw do
       resources :plans, only: %i[index show]
       resources :purchases, only: %i[create]
       resources :purchase_cancellations, only: %i[create]
+      resources :bot_chats, only: %i[create] do
+        post :finish, on: :collection
+      end
     end
   end
 end

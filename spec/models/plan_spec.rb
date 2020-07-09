@@ -23,12 +23,12 @@ RSpec.describe Plan, type: :model do
     expect(subject).to validate_presence_of(:extra_chat_price)
   end
 
-  it 'name must be unique' do
-    subject.save
-    new_plan = described_class.new(name: subject.name)
+  it 'validates unique attributes' do
+    expect(subject).to validate_uniqueness_of(:name)
+  end
 
-    expect(new_plan).not_to be_valid
-    expect(new_plan.errors[:name]).to include('já está em uso')
+  it 'status should default to active' do
+    expect(subject.status).to eq('active')
   end
 
   it 'should create a plan_price before saving' do
