@@ -29,4 +29,12 @@ RSpec.describe Purchase, type: :model do
       expect(subject.token).not_to eq(another_purchase.token)
     end
   end
+
+  it 'method: price_when_purchased' do
+    plan = create(:plan, price: 53.17)
+    purchase = create(:purchase, plan: plan)
+    create(:plan_price, plan: plan)
+
+    expect(purchase.price_when_purchased).to eq(53.17)
+  end
 end

@@ -21,8 +21,10 @@ feature 'User can browse purchases' do
     log_user_in!
     create_list(:purchase, 2)
     plan = create(:plan, extra_message_price: 23.34, extra_chat_price: 764.23,
-                         price: 137.31)
+                         created_at: '2020-03-01 7:33')
+    create(:plan_price, plan: plan, value: 137.31, created_at: '2020-03-02 7:33')
     purchase = create(:purchase, plan: plan, created_at: '2020-03-11 7:33')
+    create(:plan_price, plan: plan, created_at: '2020-03-13 7:33')
 
     visit purchases_path
     within "tr#purchase-#{purchase.id}" do

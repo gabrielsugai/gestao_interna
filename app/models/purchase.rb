@@ -10,6 +10,10 @@ class Purchase < ApplicationRecord
 
   before_create :generate_token
 
+  def price_when_purchased
+    plan.price_at(created_at)
+  end
+
   private
 
   def generate_token

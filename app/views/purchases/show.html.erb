@@ -13,8 +13,7 @@
   <dd><%= @purchase.plan.name %></dd>
 
   <dt><%= Plan.human_attribute_name(:price) %></dt>
-  <dd><%= number_to_currency(@purchase.plan.current_price) %></dd>
-  <%# corrigir para exibir o valor do plano quando foi feita a compra%>
+  <dd><%= number_to_currency(@purchase.price_when_purchased) %></dd>
 
   <dt><%= Plan.human_attribute_name(:platforms) %></dt>
   <dd><%= @purchase.plan.platforms %></dd>
