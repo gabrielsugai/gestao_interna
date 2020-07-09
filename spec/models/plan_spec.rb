@@ -27,6 +27,10 @@ RSpec.describe Plan, type: :model do
     expect(subject).to validate_uniqueness_of(:name)
   end
 
+  it 'status should default to active' do
+    expect(subject.status).to eq('active')
+  end
+
   it 'should create a plan_price before saving' do
     subject.price = '99.9'
     subject.save
