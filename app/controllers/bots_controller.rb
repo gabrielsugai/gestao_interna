@@ -5,13 +5,6 @@ class BotsController < ApplicationController
 
   def show
     @bot = Bot.find(params[:id])
+    @block_bot = BlockBot.find_by(params[:bot_id])
   end
-  
-  def block
-    @bot = Bot.find(params[:bot_id])
-    @bot.awaiting!
-    redirect_to @bot
-  end
-  
-
 end

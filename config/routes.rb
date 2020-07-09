@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :bots, only: %i[create index show] do
-    put :block
+    resources :block_bots, only: %i[create] do
+      post :confirm, on: :member
+    end
   end
   resources :plans, only: %i[index show new create edit update]
   resources :purchase_cancellations, only: %i[index show] do
