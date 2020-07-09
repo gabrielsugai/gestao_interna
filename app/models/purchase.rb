@@ -10,7 +10,7 @@ class Purchase < ApplicationRecord
 
   before_create :generate_token
 
-  def price_when_purchased
+  def price_when_bought
     plan.price_at(created_at)
   end
 

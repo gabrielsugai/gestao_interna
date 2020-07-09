@@ -30,11 +30,11 @@ RSpec.describe Purchase, type: :model do
     end
   end
 
-  it 'method: price_when_purchased' do
+  it 'method: price_when_bought' do
     plan = create(:plan, price: 53.17)
     purchase = create(:purchase, plan: plan)
     create(:plan_price, plan: plan)
 
-    expect(purchase.price_when_purchased).to eq(53.17)
+    expect(purchase.price_when_bought).to eq(53.17)
   end
 end

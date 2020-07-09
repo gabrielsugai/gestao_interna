@@ -43,17 +43,7 @@ RSpec.describe Plan, type: :model do
   end
 
   context 'method: price_at(date)' do
-    it 'should return' do
-      subject.created_at = 4.days.ago
-      create(:plan_price, plan: subject, value: 42.42, created_at: 3.days.ago)
-      create(:plan_price, plan: subject, value: 4.20, created_at: 1.day.ago)
-
-      expect(subject.price_at(2.days.ago)).to eq(42.42)
-      expect(subject.price_at(Time.zone.today)).to eq(4.20)
-      expect(subject.price_at(Time.zone.today)).to eq(subject.current_price)
-    end
-
-    it 'dsdasdas' do
+    it 'should return the closest price before a given date' do
       subject.created_at = 10.days.ago
       create(:plan_price, plan: subject, value: 420.42, created_at: 8.days.ago)
       create(:plan_price, plan: subject, value: 24.65, created_at: 4.days.ago)
@@ -61,6 +51,8 @@ RSpec.describe Plan, type: :model do
 
       expect(subject.price_at(5.days.ago)).to eq(420.42)
       expect(subject.price_at(2.days.ago)).to eq(24.65)
+      expect(subject.price_at(Time.zone.today)).to eq(4.20)
+      expect(subject.price_at(Time.zone.today)).to eq(subject.current_price)
     end
   end
 end
