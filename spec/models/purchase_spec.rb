@@ -14,6 +14,12 @@ RSpec.describe Purchase, type: :model do
     expect(subject).to be_valid
   end
 
+  it 'validates mandatory attributes' do
+    expect(subject).to validate_presence_of(:company)
+    expect(subject).to validate_presence_of(:plan)
+  end
+
+
   context 'token' do
     it 'should generate a token when created' do
       subject.save

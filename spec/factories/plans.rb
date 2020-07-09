@@ -9,5 +9,10 @@ FactoryBot.define do
     limit_monthly_messages { 20 }
     extra_message_price { 1.5 }
     extra_chat_price { 1.5 }
+    status { :active }
+
+    trait :inactive do
+      status { :inactive }
+    end
   end
 end

@@ -2,12 +2,13 @@
 
   <section>
 
-      <table class="col">
+      <table class="col table">
         <thead>
           <tr>
-            <th><%= t('activerecord.attributes.plan.name') %></th>
-            <th><%= t('activerecord.attributes.plan.current_price') %></th>
-            <th></th>
+            <th scope="col"><%= t('activerecord.attributes.plan.name') %></th>
+            <th scope="col"><%= t('activerecord.attributes.plan.current_price') %></th>
+            <th scope="col"><%= t('activerecord.attributes.plan.status') %></th>
+            <th scope="col"></th>
           </tr>
         </thead>
 
@@ -16,6 +17,7 @@
             <tr id="plan-<%= plan.id %>">
               <td><%= plan.name %></td>
               <td><%= number_to_currency(plan.current_price) %></td>
+              <td><%= Plan.human_attribute_name("status.#{plan.status}") %></td>
 
               <td><%= link_to t('views.navigation.details'), plan_path(plan), id: "details-#{plan.id}" %></td>
             </tr>

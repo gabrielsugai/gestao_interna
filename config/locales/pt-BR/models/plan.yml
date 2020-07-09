@@ -25,6 +25,12 @@ pt-BR:
         limit_monthly_messages: Limite de mensagens por mês
         extra_message_price: Valor por mensagem além do limite
         extra_chat_price: Valor por conversa além do limite
+        status: Status
+        current_price: Valor atual
+
+      plan/status:
+        active: Ativo
+        inactive: Inativo
 
   plans:
     new:

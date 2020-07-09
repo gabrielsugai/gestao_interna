@@ -106,7 +106,7 @@
 
 #### Descrição
 
-<p align="justify">Este endpoint permite a listagem de todos os planos cadastrados no sistema de gestão e seus detalhes.</p>
+<p align="justify">Este endpoint permite a listagem de todos os planos ativos cadastrados no sistema de gestão e seus detalhes.</p>
 
 #### Parametros necessarios
 
@@ -121,7 +121,7 @@
 
 - Deve ser realizada uma requisição na seguinte rota:
   - **GET /api/v1/plans**
-- A rota retorna um array com todos os planos:
+- A rota retorna um array com todos os planos ativos:
 
 ```json
 [
@@ -137,6 +137,7 @@
     "limit_monthly_messages": 1,
     "extra_message_price": 1.5,
     "extra_chat_price": 1.5,
+    "status": "active",
     "current_price": 595.08
   },
   {
@@ -151,6 +152,7 @@
     "limit_monthly_messages": 1,
     "extra_message_price": 1.5,
     "extra_chat_price": 1.5,
+    "status": "active",
     "current_price": 775.65
   }
 ]
@@ -195,6 +197,7 @@
   "limit_monthly_messages": 1,
   "extra_message_price": 1.5,
   "extra_chat_price": 1.5,
+  "status": "active",
   "current_price": 595.08
 }
 ```

@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_214636) do
     t.integer "limit_monthly_messages"
     t.float "extra_message_price"
     t.float "extra_chat_price"
+    t.integer "status", default: 0
     t.index ["name"], name: "index_plans_on_name", unique: true
   end
 
