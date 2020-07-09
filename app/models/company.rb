@@ -9,7 +9,16 @@ class Company < ApplicationRecord
 
   before_create :generate_token
 
+  def block!
+    update(blocked: true)
+    block_bots
+  end
+
   private
+
+  def block_bots
+    bots.update(status: :blocked)
+  end
 
   def cnpj_must_be_valid
     return if CNPJ.valid?(cnpj, strict: true)
