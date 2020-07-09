@@ -1,4 +1,18 @@
-# README
+# Sistema de Gestão de Bots
+
+## Tópicos
+
+- :small_blue_diamond: Descrição do projeto
+- :small_blue_diamond: Funcionalidades
+- :small_blue_diamond: Pré-requisistos
+- :small_blue_diamond: [API'S](#api's)
+  - :small_blue_diamond: [Cadastro de empresas](#cadastro-de-empresas)
+  - :small_blue_diamond: [Cancelamento de compra](#cancelamento-de-compra)
+  - :small_blue_diamond: [Todos os Planos](#todos-os-planos)
+  - :small_blue_diamond: [Um plano por Identificador](#um-plano-por-identificador)
+  - :small_blue_diamond: [Iniciar conversa de Bot](#iniciar-conversa-de-bot)
+  - :small_blue_diamond: [Encerrar conversa de Bot](#encerrar-conversa-de-bot)
+  - :small_blue_diamond: [Consumo de dados dos Bots](#consumo-de-dados-dos-bots)
 
 ## API's
 
@@ -47,6 +61,10 @@
   - Mensagem: **param is missing or the value is empty: company**
   - Motivo: **chave company faltando no json { company: { } }**
 
+<img src=".github/readme/criar_empresa.png" />
+
+---
+
 ### Cancelamento de Compra
 
 #### Descrição
@@ -80,7 +98,11 @@
 - Compra já possui solicitação de cancelamento em aberto:
   - Status de comunicação devolvido será: **400**
 
-### Lista de Planos
+<img src=".github/readme/cancelar_compra.png" />
+
+---
+
+### Todos os Planos
 
 #### Descrição
 
@@ -88,30 +110,14 @@
 
 #### Parametros necessarios
 
-##### Todos os planos
-
 - Não precisa parametros
 
-##### Um plano por identificador
-
-- O identificador do plano na rota.
-- Exemplo: **/api/v1/plans/42**
-
 #### Parametros devolvidos
-
-##### Todos os planos
-
-- Status da comunicação 200
-- **Todos os dados serão enviados como um JSON**
-
-##### Um plano por identificador
 
 - Status da comunicação 200
 - **Todos os dados serão enviados como um JSON**
 
 #### Verbo HTTP
-
-##### Todos os planos
 
 - Deve ser realizada uma requisição na seguinte rota:
   - **GET /api/v1/plans**
@@ -150,7 +156,27 @@
 ]
 ```
 
-##### Um plano por identificador
+<img src=".github/readme/todos_os_planos.png" />
+
+---
+
+### Um plano por Identificador
+
+#### Descrição
+
+<p align="justify">Este endpoint permite ver os detalhes de um plano em particular pelo seu Identificador.</p>
+
+#### Parametros necessarios
+
+- O identificador do plano na rota.
+- Exemplo: **/api/v1/plans/42**
+
+#### Parametros devolvidos
+
+- Status da comunicação 200
+- **Todos os dados serão enviados como um JSON**
+
+#### Verbo HTTP
 
 - Deve ser realizada uma requisição na seguinte rota:
   - **GET /api/v1/plans/42**
@@ -175,10 +201,12 @@
 
 #### Possiveis erros
 
-##### Um plano por identificador
-
 - Plano não encontrado:
   - Status de comunicação devolvido será: **404**
+
+<img src=".github/readme/um_plano.png" />
+
+---
 
 ### Iniciar conversa de Bot
 
@@ -226,6 +254,10 @@
 - Já existe uma conversa de bot cadastrada com o mesmo identificador externo:
   - Status de comunicação devolvido será: **422**
 
+<img src=".github/readme/criar_conversa.png" />
+
+---
+
 ### Encerrar conversa de Bot
 
 #### Descrição
@@ -269,3 +301,53 @@
 
 - Status de comunicação devolvido será: **422**
   - Tempo de termino(end_time) ocorreu antes do tempo de inicio da conversa(start_time)
+
+<img src=".github/readme/finalizar_conversa.png" />
+
+---
+
+### Consumo de dados dos Bots
+
+#### Descrição
+
+<p align="justify"> Esta API devolve os dados referentes as trocas de mensagens dos bots contrados pelos clientes. A requisição desses dados pode ser feita para o mês atual, ou para um mês anterior passando a data desejada nos parametros JSON.</p>
+
+#### Parametros necessarios
+
+- Token do bot [bot][token]
+- Data do mês desejado **OPCIONAL** [date] **(somente necessário caso a requisição não seja referente ao mês atual)**
+- **Todos os dados devem ser enviados como um JSON**
+- **Exemplo JSON para o mês atual:**
+  - **{ bot: { token: 'ABC123'} }**
+- **Exemplo JSON para um mês anterior:**
+  - **{ bot: { token: 'ABC123'}, date: '2019-07-09' }**
+
+#### Parametros devolvidos
+
+- Mês consultado [month]
+- Quantidade de conversas no mês consultado [total_chats]
+- Quantidade de mensagens no mês consultado [total_messages]
+- Valor previsto para ser cobrado no mês consultado [monthly_cost]
+- **Todos os dados serão enviados como um JSON**
+
+#### Verbo HTTP
+
+- **GET**
+- É necessário um GET na seguinte rota:
+  - **/api/v1/bot_usage_reports**
+
+#### Possiveis erros
+
+- Status de comunicação devolvido será: **404**
+
+  - Bot não encontrada por Token
+
+- Status de comunicação devolvido será: **422**
+  - Data enviada possuir formato invalido
+  - Data enviada for anterior a data de criação do bot(data de confirmação de compra)
+
+<img src=".github/readme/bot_consumo_mes_atual.png" />
+
+<img src=".github/readme/bot_consumo_mes_anterior.png" />
+
+---

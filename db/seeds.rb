@@ -10,4 +10,5 @@ FactoryBot.create_list :purchase, 5
 FactoryBot.create_list :purchase_cancellation, 5
 
 FactoryBot.create_list :bot, 3
-FactoryBot.create_list :bot_chat, 5
+FactoryBot.create_list :bot_chat, 5, bot: Bot.first
+FactoryBot.create_list :bot_chat, 5, bot: Bot.last
