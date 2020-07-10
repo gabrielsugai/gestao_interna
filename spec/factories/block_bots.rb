@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :block_bot do
-    bot { nil }
-    user { nil }
+    bot
+    user
   end
 end
