@@ -2,10 +2,10 @@
   font-weight: 500;
   letter-spacing: 1px;
   font-size: 1.1em;
-  color: $pallette-independence;
+  color: $color-3a;
 
   &:hover {
-    color: $pallette-light-independence;
+    color: $color-3b;
     text-decoration: none;
   }
 }
@@ -17,7 +17,7 @@
 
   padding: 15px;
   margin-bottom: 30px;
-  background-color: $pallette-light-cyan;
+  background-color: $pallette-royal-blue;
 }
 
 .headbar_right {
@@ -30,7 +30,7 @@
 
   margin-right: 10px;
   margin-left: 15px;
-  border-left: 1px solid $pallette-cyan;
+  border-left: 2px solid $pallette-light-royal-blue;
 
   &:first-child {
     margin-right: 0;
@@ -40,4 +40,9 @@
 
 .nav_dropdown_item {
   @include nav_link;
+
+  color: $pallette-independence;
+  &:hover {
+    color: $pallette-light-independence;
+  }
 }
