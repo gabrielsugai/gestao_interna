@@ -1,0 +1,38 @@
+<header class='main_headbar navbar navbar-light'>
+  <%= link_to image_tag("bot-icon.png", alt: t('views.application_name'), width: "50"),
+              root_path, class: 'logo_svg' %>
+
+  <div class="headbar_right">
+    <div class="headbar_right">
+    <nav class='nav'>
+      <li class='nav_item'>
+        <%= link_to t('views.navigation.home'), root_path, class: 'nav_item' %>
+      </li>
+
+      <% if user_signed_in? %>
+        <li class='nav_item dropdown' id="jobs_dropdown">
+          <a class='nav_item dropdown-toggle' role='button' id='resourcesDropdown' 
+            data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <%= t('views.navigation.resources') %>
+          </a>
+
+          <div class='dropdown-menu dropdown-menu-right' aria-labelledby='resourcesDropdown'>
+            <%= link_to t('activerecord.models.bot.other'),
+                        bots_path,
+                        class: 'nav_dropdown_item dropdown-item' %>
+            <%= link_to t('activerecord.models.purchase_cancellation.slug'),
+                        purchase_cancellations_path,
+                        class: 'nav_dropdown_item dropdown-item' %>
+            <%= link_to t('activerecord.models.plan.other'),
+                        plans_path,
+                        class: 'nav_dropdown_item dropdown-item' %>
+          </div>
+        </li>
+
+        <li class='nav_item'>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav_item' %>
+        </li>
+      <% end %>
+    </nav>
+  </div>
+</header>
