@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resources :bot_chats, only: %i[create] do
         post :finish, on: :collection
       end
-      get :bot_usage_reports, to: 'bot_usage_reports#generate'
+      get :bot_usage, to: 'bot_usage#generate'
     end
   end
 end

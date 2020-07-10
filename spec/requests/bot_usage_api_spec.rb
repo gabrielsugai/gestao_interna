@@ -6,7 +6,7 @@ describe 'User require Bot usage' do
       bot = create(:bot, created_at: 1.day.ago)
       create_list(:bot_chat, 5, :end_conversation, bot: bot, message_count: 3)
 
-      get api_v1_bot_usage_reports_path, params: { bot: { token: bot.token } }
+      get api_v1_bot_usage_path, params: { bot: { token: bot.token } }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:ok)
@@ -23,7 +23,7 @@ describe 'User require Bot usage' do
       bot = create(:bot, purchase: purchase, created_at: 1.day.ago)
       create_list(:bot_chat, 4, :end_conversation, bot: bot, message_count: 3)
 
-      get api_v1_bot_usage_reports_path, params: { bot: { token: bot.token } }
+      get api_v1_bot_usage_path, params: { bot: { token: bot.token } }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:ok)
@@ -36,21 +36,21 @@ describe 'User require Bot usage' do
     it 'can recieve a date param a generate a report for that month' do
       plan = create(:plan, limit_monthly_chat: 3, limit_monthly_messages: 4,
                            extra_chat_price: 5, extra_message_price: 3.5,
-                           created_at: 2.years.ago)
-      create(:plan_price, plan: plan, created_at: 2.years.ago, value: 83.00)
-      purchase = create(:purchase, plan: plan, created_at: 1.year.ago)
-      bot = create(:bot, purchase: purchase, created_at: 1.year.ago)
+                           created_at: '2020-02-01')
+      create(:plan_price, plan: plan, created_at: '2020-02-09', value: 83.00)
+      purchase = create(:purchase, plan: plan, created_at: '2020-02-10')
+      bot = create(:bot, purchase: purchase, created_at: '2020-02-10')
       create_list(:bot_chat, 6, :end_conversation, bot: bot, message_count: 7,
-                                                   created_at: 11.months.ago)
+                                                   created_at: '2020-03-10')
 
-      get api_v1_bot_usage_reports_path, params: {
+      get api_v1_bot_usage_path, params: {
         bot: { token: bot.token },
-        date: 11.months.ago
+        date: '2020-03-25'
       }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:ok)
-      expect(json_response[:month]).to eq(11.months.ago.strftime('%Y-%m'))
+      expect(json_response[:month]).to eq('2020-03')
       expect(json_response[:total_chats]).to eq(6)
       expect(json_response[:total_messages]).to eq(42)
       expect(json_response[:monthly_cost]).to eq(83 + 15 + 38 * 3.5)
@@ -59,31 +59,31 @@ describe 'User require Bot usage' do
     it 'should return unprocessable entity for invalid date format' do
       bot = create(:bot)
 
-      get api_v1_bot_usage_reports_path, params: {
+      get api_v1_bot_usage_path, params: {
         bot: { token: bot.token },
         date: 'yolo'
       }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(json_response[:error]).to eq('invalid date')
+      expect(json_response[:error]).to eq('Data não é valida.')
     end
 
     it 'should return unprocessable entity for invalid date' do
-      bot = create(:bot, created_at: 2.months.ago)
+      bot = create(:bot, created_at: '2020-04-11')
 
-      get api_v1_bot_usage_reports_path, params: {
+      get api_v1_bot_usage_path, params: {
         bot: { token: bot.token },
-        date: 3.months.ago
+        date: '2020-03-11'
       }
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(json_response[:error]).to eq('invalid date')
+      expect(json_response[:error]).to eq('Data não é valida.')
     end
 
     it 'should return not found for an invalid bot token' do
-      get api_v1_bot_usage_reports_path, params: { bot: { token: 'A8M292' } }
+      get api_v1_bot_usage_path, params: { bot: { token: 'A8M292' } }
 
       expect(response).to have_http_status(:not_found)
     end

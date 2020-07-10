@@ -1,27 +1,46 @@
-class Api::V1::BotUsageReportsController < Api::V1::ApiController
-  rescue_from ArgumentError, with: :invalid_params
+class BotUsageService
+  def self.call(params)
+    new(params).call
+  end
 
-  def generate
-    @bot = Bot.find_by!(token: params[:bot][:token])
-    @start_date = parse_date
-    return invalid_params('invalid date') if invalid_date
+  def initialize(params)
+    @bot = params[:bot]
+    throw ArgumentError unless @bot
 
+    @start_date = parse_date(params[:raw_date])
     @end_date = @start_date.end_of_month
     @plan = @bot.purchase.plan
     @bot_chats = @bot.chats.between(@start_date, @end_date)
+  end
 
-    render status: :ok, json: usage_report
+  def call
+    throw ArgumentError unless @bot
+    throw ArgumentError if invalid_date
+
+    generate
   end
 
   private
 
-  def usage_report
+  def parse_date(raw_date)
+    raw_date ? Date.parse(raw_date).beginning_of_month : Time.zone.today
+  end
+
+  def invalid_date
+    @start_date < @bot.created_at
+  end
+
+  def generate
     {
-      month: @start_date.strftime('%Y-%m'),
+      month: month,
       total_chats: total_chats,
       total_messages: total_messages,
       monthly_cost: monthly_cost
     }
+  end
+
+  def month
+    @start_date.strftime('%Y-%m')
   end
 
   def total_chats
@@ -62,17 +81,5 @@ class Api::V1::BotUsageReportsController < Api::V1::ApiController
 
   def message_limit
     @plan.limit_monthly_messages
-  end
-
-  def parse_date
-    params[:date] ? Date.parse(params[:date]).beginning_of_month : Time.zone.today
-  end
-
-  def invalid_date
-    @start_date < @bot.created_at
-  end
-
-  def invalid_params(exception)
-    render status: :unprocessable_entity, json: { error: exception }
   end
 end

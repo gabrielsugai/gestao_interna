@@ -337,12 +337,11 @@
 
 - **GET**
 - É necessário um GET na seguinte rota:
-  - **/api/v1/bot_usage_reports**
+  - **/api/v1/bot_usage**
 
 #### Possiveis erros
 
 - Status de comunicação devolvido será: **404**
-
   - Bot não encontrada por Token
 
 - Status de comunicação devolvido será: **422**
