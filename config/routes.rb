@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :bots, only: %i[create index]
+  resources :purchases, only: %i[index show]
   resources :plans, only: %i[index show new create edit update] do
     post :deactivate, on: :member
     post :activate, on: :member
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       resources :bot_chats, only: %i[create] do
         post :finish, on: :collection
       end
+      get :bot_usage, to: 'bot_usage#generate'
     end
   end
 end
