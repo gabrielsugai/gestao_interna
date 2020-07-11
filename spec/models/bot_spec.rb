@@ -17,7 +17,7 @@ RSpec.describe Bot, type: :model do
     expect(subject).to validate_uniqueness_of(:token)
   end
 
-  xit 'Create after purchase' do
+  it 'Create after purchase' do
     purchase = create(:purchase)
 
     expect(Bot.count).to eq 1
