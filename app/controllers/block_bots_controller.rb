@@ -1,9 +1,8 @@
 class BlockBotsController < ApplicationController
   def create
     @bot = Bot.find(params[:bot_id])
-    @block_bot = BlockBot.new(bot_id: @bot.id, user: current_user)
     @bot.awaiting!
-    @block_bot.save!
+    @block_bot = BlockBot.create!(bot_id: @bot.id, user: current_user)
     redirect_to @bot
   end
 
@@ -11,17 +10,15 @@ class BlockBotsController < ApplicationController
     @bot = Bot.find(params[:bot_id])
     @block_bot = BlockBot.find_by(params[@bot.id])
     @bot.blocked!
-    block_company
+    check_company_block
     @block_bot.update(user: current_user)
     redirect_to @bot
   end
 
   private
 
-  def block_company
-    return unless @block_bot.check_date(@bot.company.name) > 1
-
-    flash[:notice] = 'Empresa bloqueada'
-    @bot.company.update(blocked: true)
+  def check_company_block
+    @bot.company.block_company
+    flash[:notice] = 'Empresa bloqueada' if @bot.company.blocked?
   end
 end
