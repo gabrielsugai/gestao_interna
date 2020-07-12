@@ -31,11 +31,11 @@
   <%= f.check_box :blocked_on_limit %>
   <%= f.label :blocked_on_limit %>
 
-  <%= f.label :extra_message_price %>
-  <%= f.number_field :extra_message_price %>
+  <%= f.label :extra_message_price, class: 'hide_when_blocked_on_limit'%>
+  <%= f.number_field :extra_message_price, class: 'hide_when_blocked_on_limit' %>
 
-  <%= f.label :extra_chat_price %>
-  <%= f.number_field :extra_chat_price %>
+  <%= f.label :extra_chat_price, class: 'hide_when_blocked_on_limit' %>
+  <%= f.number_field :extra_chat_price, class: 'hide_when_blocked_on_limit'%>
 
   <%= f.submit action %>
 <% end %>

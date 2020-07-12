@@ -32,14 +32,14 @@ RSpec.describe Plan, type: :model do
   context 'extra price validations' do
     it 'should validate extra prices presence if blocked_on_limit' do
       subject.blocked_on_limit = false
-  
+
       expect(subject).to validate_presence_of(:extra_chat_price)
       expect(subject).to validate_presence_of(:extra_message_price)
     end
 
     it "shouldn't otherwise" do
       subject.blocked_on_limit = true
-  
+
       expect(subject).to be_valid
     end
   end

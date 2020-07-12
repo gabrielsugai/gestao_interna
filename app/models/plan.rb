@@ -34,8 +34,8 @@ class Plan < ApplicationRecord
     return if blocked_on_limit
     return if extra_message_price.present? && extra_chat_price.present?
 
-    errors.add(:extra_message_price, :blank) unless extra_message_price.present?
-    errors.add(:extra_chat_price, :blank) unless extra_chat_price.present?
+    errors.add(:extra_message_price, :blank) if extra_message_price.blank?
+    errors.add(:extra_chat_price, :blank) if extra_chat_price.blank?
   end
 
   def create_plan_price
