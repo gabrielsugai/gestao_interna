@@ -86,7 +86,7 @@ Testes:
 - Relatório de cobertura de testes: [SimpleCov](https://github.com/colszowka/simplecov)
 - Padronizador de dados: [Factory Bot Rails](https://github.com/thoughtbot/factory_bot_rails)
 - Gerador de dados aleatórios: [Faker](https://github.com/faker-ruby/faker)
-- Teste de funcioalidades comuns do Rails: [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers)
+- Testes de funcionalidades comuns do Rails: [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers)
 
 ### Pacotes do Node
 
