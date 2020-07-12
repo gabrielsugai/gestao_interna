@@ -12,8 +12,10 @@
   <body>
     <% if user_signed_in? %>
       <nav>
+        <%= link_to 'Início', root_path %>
         <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
         <%= link_to t('activerecord.models.plan.other'), plans_path %>
+        <%= link_to 'Ver Empresas', companies_path %>
         <%= link_to t('activerecord.models.purchase_cancellation.other'), purchase_cancellations_path %>
       </nav>
     <% end %>
