@@ -34,7 +34,7 @@
 - :small_blue_diamond: [Dependencias](#dependências)
   - :small_blue_diamond: [Gems](#gems)
   - :small_blue_diamond: [Pacotes do Node](#pacotes-do-node)
-- :small_blue_diamond: [API'S](#api's)
+- :small_blue_diamond: [API V1](#api-v1)
   - :small_blue_diamond: [Cadastro de empresas](#cadastro-de-empresas)
   - :small_blue_diamond: [Cadastro de compra](#cadastro-de-compra)
   - :small_blue_diamond: [Cancelamento de compra](#cancelamento-de-compra)
@@ -94,7 +94,7 @@ Testes:
 - Manipulação de HTML pelo JS: [JQuery](https://github.com/jquery/jquery)
 - Pop-overs: [Popper](https://github.com/popperjs/popper-core)
 
-## API's
+## API V1
 
 ### Cadastro de empresas
 
