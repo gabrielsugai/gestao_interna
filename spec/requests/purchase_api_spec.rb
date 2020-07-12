@@ -58,8 +58,8 @@ describe 'Register Purchase' do
       post '/api/v1/purchases', params: { purchase: { company_token: company.token, plan_id: plan.id } }
       json_response = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response).to have_http_status(:locked)
-      expect(json_response[:error]).to eq 'Empresa bloqueada de fazer novas compras.'
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(json_response[:error].first).to eq 'Empresa bloqueada de fazer novas compras.'
     end
   end
 end

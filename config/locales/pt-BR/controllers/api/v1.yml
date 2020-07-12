@@ -10,4 +10,3 @@ pt-BR:
       purchases:
         create:
           bad_request: Parametros invalidos, verifique o corpo da requisição.
-          blocked_company: Empresa bloqueada de fazer novas compras.

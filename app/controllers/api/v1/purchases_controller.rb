@@ -16,9 +16,6 @@ class Api::V1::PurchasesController < Api::V1::ApiController
 
   def check_company
     @company = Company.find_by!(token: params[:purchase][:company_token])
-    return unless @company.blocked
-
-    render status: :locked, json: { error: t('.blocked_company') }
   end
 
   def check_plan

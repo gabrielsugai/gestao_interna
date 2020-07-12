@@ -190,7 +190,7 @@ Testes:
   - Plano não encontrado
   - Compra não encontrada
 
-- Status de comunicação devolvido será: **423**
+- Status de comunicação devolvido será: **422**
   - Empresa bloqueada de fazer compras
 
 <img src=".github/readme/criar_compra.png" />
