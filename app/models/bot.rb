@@ -3,7 +3,7 @@ class Bot < ApplicationRecord
   belongs_to :purchase
   has_many :chats, class_name: 'BotChat', dependent: :restrict_with_error
 
-  scope :company_bots, -> (company_id) {where('company_id = ?', company_id)}
+  scope :company_bots, ->(company_id) { where('company_id = ?', company_id) }
 
   enum status: { active: 0, canceled: 5, blocked: 10 }
 
