@@ -5,7 +5,7 @@
 - :small_blue_diamond: Descrição do projeto
 - :small_blue_diamond: Funcionalidades
 - :small_blue_diamond: Pré-requisistos
-- :small_blue_diamond: [API'S](#api's)
+- :small_blue_diamond: [API V1](#api-v1)
   - :small_blue_diamond: [Cadastro de empresas](#cadastro-de-empresas)
   - :small_blue_diamond: [Cancelamento de compra](#cancelamento-de-compra)
   - :small_blue_diamond: [Todos os Planos](#todos-os-planos)
@@ -14,7 +14,7 @@
   - :small_blue_diamond: [Encerrar conversa de Bot](#encerrar-conversa-de-bot)
   - :small_blue_diamond: [Consumo de dados dos Bots](#consumo-de-dados-dos-bots)
 
-## API's
+## API V1
 
 ### Cadastro de empresas
 
