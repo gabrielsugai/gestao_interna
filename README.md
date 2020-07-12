@@ -7,6 +7,7 @@
 - :small_blue_diamond: Pré-requisistos
 - :small_blue_diamond: [API'S](#api's)
   - :small_blue_diamond: [Cadastro de empresas](#cadastro-de-empresas)
+  - :small_blue_diamond: [Cadastro de compra](#cadastro-de-compra)
   - :small_blue_diamond: [Cancelamento de compra](#cancelamento-de-compra)
   - :small_blue_diamond: [Todos os Planos](#todos-os-planos)
   - :small_blue_diamond: [Um plano por Identificador](#um-plano-por-identificador)
@@ -62,6 +63,58 @@
   - Motivo: **chave company faltando no json { company: { } }**
 
 <img src=".github/readme/criar_empresa.png" />
+
+---
+
+### Cadastro de compra
+
+#### Descrição
+
+<p align="justify"> A API de cadastro de compra receber o token de uma empresa e o identificador do plano que ela deseja comprar. Uma vez salva a compra, devolvemos o token identificador da mesma. Caso a empresa estiver bloqueada de comprar bots retornamos um erro.</p>
+
+#### Parametros necessarios
+
+- Token da empresa [purchase][company_token]
+- Identificador do plano [purchase][plan_id]
+- **Todos os dados devem ser enviados como um JSON**
+- **Exemplo:**
+  - **{ "purchase": { "company_token": "L121IW", "plan_id": "42" } }**
+
+#### Parametros devolvidos
+
+- Dados da compra
+- Dados da empresa [company]
+- Dados do plano [plan]
+- **Todos os dados serão enviados como um JSON**
+
+#### Verbo HTTP
+
+- **POST**
+- Os dados devem ser enviados para seguinte rota:
+  - **/api/v1/purchases**
+
+#### Possiveis erros
+
+- Parametros obrigatorios:
+
+  - Token da empresa
+  - Identificador do plano
+
+- Status de comunicação devolvido será: **400**
+
+  - _purchase_ vazio
+  - _plan_id_ vazio
+  - _company_token_ vazio
+
+- Status de comunicação devolvido será: **404**
+
+  - Plano não encontrado
+  - Compra não encontrada
+
+- Status de comunicação devolvido será: **423**
+  - Empresa bloqueada de fazer compras
+
+<img src=".github/readme/criar_compra.png" />
 
 ---
 
@@ -342,6 +395,7 @@
 #### Possiveis erros
 
 - Status de comunicação devolvido será: **404**
+
   - Bot não encontrada por Token
 
 - Status de comunicação devolvido será: **422**
