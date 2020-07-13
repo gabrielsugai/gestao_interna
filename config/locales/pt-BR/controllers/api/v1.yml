@@ -1,12 +1,12 @@
 ---
 pt-BR:
-  controllers:
-    api:
-      v1:
-        errors:
-          not_found: '%{model} não encontrado.'
   api:
     v1:
+      not_found: '%{model} não encontrada(o).'
+
+      bot_usage:
+        invalid_date: Data não é valida.
+
       purchases:
         create:
           error: '%{attribute} não encontrado.'
@@ -14,5 +14,3 @@ pt-BR:
           token: Token
           plan: Plano
           purchase: Compra
-  not_found: '%{model} não encontrado.'
-

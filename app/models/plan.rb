@@ -24,6 +24,10 @@ class Plan < ApplicationRecord
     super
   end
 
+  def price_at(date)
+    plan_prices.closest_to(date)&.value
+  end
+
   private
 
   def create_plan_price

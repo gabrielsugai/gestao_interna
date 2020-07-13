@@ -16,3 +16,8 @@ pt-BR:
       purchase:
         <<: *attr_defaults
         token: Token
+        status: Status
+
+      purchase/status:
+        active: Ativo
+        inactive: Inativo
