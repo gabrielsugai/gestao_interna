@@ -9,6 +9,7 @@ class Purchase < ApplicationRecord
   enum status: { active: 0, inactive: 5 }
 
   before_create :generate_token
+  after_commit :create_bot, on: :create
 
   def price_when_bought
     plan.price_at(created_at)
@@ -21,5 +22,9 @@ class Purchase < ApplicationRecord
       token = SecureRandom.alphanumeric(6).upcase
       break token unless Purchase.exists?(token: token)
     end
+  end
+
+  def create_bot
+    Bot.create!(purchase: self, company: company)
   end
 end
